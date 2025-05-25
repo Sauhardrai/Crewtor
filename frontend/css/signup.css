@@ -1,0 +1,116 @@
+.singup-div{
+     background-color: transparent;
+     height: 700px;
+     width: 500px;         /* or any responsive width 343a43 */
+  /* aspect-ratio: 1 / 1.1; */
+  border-radius: 30px;
+  backdrop-filter: blur(10px);
+}
+.hidden{
+  display: none;
+}
+
+.Container h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+.container  h2 {
+  font-family: "Paytone One", sans-serif !important;
+  font-weight: 400;
+  font-size: 2.5rem;
+  font-weight: 500;
+}
+.container h3 {
+  font-size: smaller;
+  color: #a1a1aa;
+
+  margin: 1rem auto;
+}
+
+.container p {
+  color: #a1a1aa;
+  max-width: 600px;
+  margin: 1rem auto;
+}
+
+.sgbtn{
+  padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+  background-color: transparent;
+  border: 1px solid green;
+  
+}
+.sgbtn:hover{
+  
+  border: 2px solid green !important;
+  color: rgb(3, 251, 3) !important;
+}
+
+
+
+.card-3d {
+  box-shadow: 0px 0px 20px 0px rgb(255, 255, 255);
+  transition: transform 0.3s ease;
+}
+
+.line-text {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 30px 40px 0 40px;
+}
+
+.line-text::before,
+.line-text::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid #fff6f6;
+}
+
+.line-text:not(:empty)::before {
+  margin-right: 10px;
+}
+
+.line-text:not(:empty)::after {
+  margin-left: 10px;
+}
+
+.baner-div{
+  padding: 1.5rem;
+
+}
+
+.form_div{
+  margin: 5rem auto auto auto;
+}
+
+
+
+@media (max-width:576px) {
+   .container h2 {
+  /* word-spacing: 0.5rem; */
+  font-family: "Poppins", sans-serif !important;
+  font-weight: 400;
+  line-height: 2rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+} 
+.container h3 {
+    font-size: 1rem;
+}
+
+.singup-div{
+     
+     width: 90%;         /* or any responsive width */
+  aspect-ratio: 1 / 1.5;
+}
+.subheading{
+  font-size: 1rem;
+}
+.line-text{
+  margin: 10px 10px 0 10px ;
+}
+#otpbtn{
+  justify-content: center;
+  margin-top: 10px;
+}
+}

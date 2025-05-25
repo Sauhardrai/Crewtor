@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="./assets/favicon.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Join the best mentorship program for IIT JEE and NEET at Crewtor. Connect for 1 to 1 mentoring from recent toppers to crack the exam. Check for mentorship benefits.">
+    <meta name="keywords"
+        content="best mentorship program for JEE, 1 to 1 mentoring, mentorship benefits, mentorship program for JEE, neet mentor, iit mentors, jee mentor, personal mentorship for neet, personal mentor for neet, recent neet toppers, neet topper, jee topper, recent jee toppers, personal mentor for jee, mentorship for jee, mentorship program for neet">
+    <title>Crewtor - Guided by Captains</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Paytone+One&family=Poppins:wght@400;600&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../css/signup.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top " data-bs-theme="dark" id="navbar">
+        <div class="container-fluid ">
+            <a class="navbar-brand ms-3" href="#"><img src="../assets/logo2.png" alt="" height="40px"
+                    class="logo-img"></a>
+
+            <a href="../index.html" class="d-lg-none custom-toggler btn " id="lgBtn"><span class="nav-logo"><i
+                        class="fa-solid fa-house" style="color: #63E6BE;"></i></span>&nbsp;
+                Home</a>
+
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation" id="nav-btn">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                <div class="navbar-nav ms-auto">
+                    <a href="../index.html" class="nav-link"><span class="nav-logo"><i class="fa-solid fa-house"
+                                style="color: #63E6BE;"></i></span>&nbsp;Home</a>
+                    <a href="" class="nav-link"><span class="nav-logo"><i class="fa-solid fa-user-group"
+                                style="color: #63E6BE;"></i></span>&nbsp;Crew!</a>
+                    <a href="" class="nav-link"><span class="nav-logo"><i class="fa-solid fa-graduation-cap nav-logo"
+                                style="color: #63E6BE;"></i></span> &nbsp;
+                        Become a Captain</a>
+
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main section start here -->
+    <div class="container text-center ">
+        <div class="row  m-auto mt-3">
+            <div class="mt-1">
+                <h1>SingUp For <span>Crewtor!</span></h1>
+                <p class=" mb-5 "> Start Your Journey from a <br><span>Student to Topper</span> with
+                    <span>Crewtor</span>
+                </p>
+            </div>
+        </div>
+        <div class="  singup-div m-auto mb-5 card-3d">
+            <div class="" id="baner-div">
+                <div class="mt-4 baner-div  ">
+                    <a href="#"><img src="../assets/logo2.png " alt="" height="60px" class="logo-img"></a>
+                    <h1 class="mt-3">Create an <span>Account</span></h1>
+                    <p>Already have an account <a href="../html/login.html">login</a></p>
+                    <button class="btn mt-3 sgbtn"><i class="fa-brands fa-google" style="color: #63E6BE;"></i>&nbsp;
+                        &nbsp;&nbsp;SingUp Using Google</button>
+                </div>
+                <div class="line-text">
+                    <span style="color: white;">OR</span>
+                </div>
+                <div class="email-div text-center ms-2">
+                    <p class="subheading">Enter your email address to create your account</p>
+                    <div class="mt-4 baner-div ">
+                        
+                        <form id="otpform" class="row g-3">
+                            <div class="row mb-4 align-items-center">
+                                <div class="col-auto">
+                                    <label for="inputemail" class="form-label">Your email</label>
+                                </div>
+                                <div class="col-auto">
+                                    <input type="text" name="email" class="form-control" id="inputemail"
+                                    placeholder="Email" required>
+                                </div>   
+                            </div>
+                            
+                            <div class="row align-items-center">
+                                <div class="col-auto">
+                                    <label for="inputotp" class="col-form-label">OTP</label>
+                                </div>
+                                <div class="col-lg-6 col-sm-1 ">
+                                    <input type="number" id="inputotp" class="form-control" name="otp">
+                                </div>
+                                <div class="col-auto ">
+                                    <button class="btn sgbtn" id="otpbtn" type="submit">send otp</button>
+                                    
+                                </div>
+                            </div>
+                            
+                        </form>
+                        <button  class="btn mt-4 sgbtn" id="Crbtn" onclick="checkForOtp()">&nbsp;&nbsp;Creat an account&nbsp;&nbsp;</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <footer>
+        <div class="container text-center mt-2">
+            <div class="row ms-auto  ">
+                <div class="col-5">
+                    <ul>
+                        <li>
+                            <p><span>Follow Us:</span> &nbsp;<a
+                                    href="https://www.instagram.com/crewtor.in?igsh=ZXhjeDdsNHRobWlj" target="_blank"><i
+                                        class="fa-brands fa-instagram" style="color: #63E6BE;"></i></a>&nbsp; &nbsp;<a
+                                    href="https://www.linkedin.com/company/crewtor/" target="_blank"><i
+                                        class="fa-brands fa-linkedin" style="color: #63E6BE;"></i></a></p>
+                        </li>
+                        <li><a href="" class="nav-link"><span>Terms and Conditions</span></a></li>
+                    </ul>
+                </div>
+
+                <div class="col-5">
+                    <ul>
+                        <li>
+                            <p><span>Contact us:</span> &nbsp;<a
+                                    href="https://mail.google.com/mail/?view=cm&fs=1&to=crewtorofficial@gmail.com"
+                                    target="_blank"><i class="fa-regular fa-paper-plane"
+                                        style="color: #63E6BE;"></i></a></p>
+                        </li>
+                        <li><a href="" class="nav-link"><span>Privacy Policy</span></a></li>
+                    </ul>
+                </div>
+
+            </div>
+            <p class="text-center">© 2025 Crewtor. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
+        crossorigin="anonymous"></script>
+    <script src="../style.css"></script>
+    <script src="../js/signup.js"></script>
+</body>
+
+</html>
