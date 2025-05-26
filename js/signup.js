@@ -40,6 +40,7 @@ function sendform() {
   main_div.innerHTML = '';
   new_html = `<div class="mt-4 baner-div ">
                 <a href="#"><img src="../assets/logo2.png " alt="" height="60px" class="logo-img"></a>
+                <p>Enter Your Details here</p>
                 <div class="form_div">
                 <form class="row g-3 needs-validation" >
                     <div class="col-md-6 col-sm-6">
