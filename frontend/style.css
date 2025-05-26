@@ -29,6 +29,20 @@ body span {
   cursor: pointer;
 }
 
+.sgbtn {
+  padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+  color: orange !important;
+  background-color: transparent;
+  border: 1px solid orange;
+
+}
+
+.sgbtn:hover {
+
+  border: 2px solid yellow !important;
+  color: rgb(3, 251, 3) !important;
+}
+
 .navbar {
   margin: 1.5rem;
   background-color: transparent !important;
@@ -205,7 +219,7 @@ CardPad {
 }
 
 .faq-question {
-  
+
   font-size: 1.1rem;
   font-weight: 500;
   cursor: pointer;
@@ -231,10 +245,10 @@ CardPad {
   padding: 0.5rem 0 0.5rem 0.5rem;
   color: #ddd;
   line-height: 1.5;
-  max-height:0px;
-  overflow:hidden;
+  max-height: 0px;
+  overflow: hidden;
   transition: max-height 0.6s ease;
-  
+
 
 }
 
@@ -250,7 +264,8 @@ CardPad {
 
 
 
-/* foteer */
+
+/* footer */
 footer {
   text-align: center;
   color: #6b7280;
@@ -303,11 +318,10 @@ footer .row {
   }
 
   .Container .btn {
-    background-color: #3b82f6;
-    color: white !important;
+
     padding: 0.2rem 1rem;
     border-radius: 999px;
-    border: none;
+
     cursor: pointer;
   }
 
@@ -362,23 +376,3 @@ footer .row {
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
