@@ -1,0 +1,53 @@
+
+  function goToStep(stepNumber) {
+    const totalSteps = 3;
+
+    // Validate current form step before going to next
+    const currentStepElement = document.querySelector('.form-step.active');
+    if (currentStepElement) {
+      const inputs = currentStepElement.querySelectorAll('input, select');
+      for (let input of inputs) {
+        if (input.hasAttribute('required') && !input.value.trim()) {
+          Swal.fire({
+            icon: 'warning',
+            title: 'Incomplete!',
+            text: 'Please fill all required fields before continuing.'
+          });
+        //   input.focus();
+          return;
+        }
+      }
+    }
+
+    // Proceed to selected step
+    for (let i = 1; i <= totalSteps; i++) {
+      document.getElementById('form-step-' + i).classList.remove('active');
+      document.getElementById('step-' + i).classList.remove('active', 'completed');
+
+      if (i < stepNumber) {
+        document.getElementById('step-' + i).classList.add('completed');
+      } else if (i === stepNumber) {
+        document.getElementById('step-' + i).classList.add('active');
+      }
+    }
+
+    document.getElementById('form-step-' + stepNumber).classList.add('active');
+  }
+
+
+function gobackTostep(stepNumber){
+    const totalSteps = 3;
+    // Proceed to selected step
+    for (let i = 1; i <= totalSteps; i++) {
+      document.getElementById('form-step-' + i).classList.remove('active');
+      document.getElementById('step-' + i).classList.remove('active', 'completed');
+
+      if (i < stepNumber) {
+        document.getElementById('step-' + i).classList.add('completed');
+      } else if (i === stepNumber) {
+        document.getElementById('step-' + i).classList.add('active');
+      }
+    }
+
+    document.getElementById('form-step-' + stepNumber).classList.add('active');
+}
