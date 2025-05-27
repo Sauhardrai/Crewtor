@@ -302,7 +302,14 @@ footer .row {
 
 
 
-
+@media (max-width: 400px) {
+  .navbar{
+    margin: 0.5rem;
+  }
+  footer p {
+    font-size: small;
+  }
+}
 
 
 
