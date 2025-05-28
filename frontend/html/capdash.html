@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="icon" href="./assets/favicon.svg">
+  <link rel="icon" href="../assets/favicon.svg">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description"
     content="Join the best mentorship program for IIT JEE and NEET at Crewtor. Connect for 1 to 1 mentoring from recent toppers to crack the exam. Check for mentorship benefits.">
@@ -29,55 +29,340 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
 </head>
 
 <body>
+  <nav class="navbar  d-lg-none bg-body-tertiary sticky-top " data-bs-theme="dark" id="navbar">
+    <div class="container-fluid ">
+      <a class="navbar-brand ms-3" href="../index.html"><img src="../assets/logo2.png" alt="" height="40px"
+          class="logo-img"></a>
+      <a href="" class="d-lg-none custom-toggler btn " id="lgBtn">View Plans</a>
+      <button class="btn  d-lg-none sgbtn" type="button" data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasResponsive" aria-controls="offcanvasResponsive"> ☰</button>
+    </div>
+  </nav>
 
 
-    
-    
-  <footer>
-    <div class="container text-center mt-2">
-      <div class="row ms-auto  ">
-        <div class="col-5">
-          <ul>
-            <li>
-              <p><span>Follow Us:</span> &nbsp;<a href="https://www.instagram.com/crewtor.in?igsh=ZXhjeDdsNHRobWlj"
-                  target="_blank"><i class="fa-brands fa-instagram" style="color: #63E6BE;"></i></a>&nbsp; &nbsp;<a
-                  href="https://www.linkedin.com/company/crewtor/" target="_blank"><i class="fa-brands fa-linkedin"
-                    style="color: #63E6BE;"></i></a></p>
-            </li>
-            <li><a href="" class="nav-link"><span><p>Terms and Conditions</p></span></a></li>
-            <li><a href="aboutus.html" class="nav-link"><p><span>About Us!</span></p></a></li>
-          </ul>
+  <div class="sidebar">
+
+    <div class="offcanvas-lg offcanvas-end text-bg-dark card-3d" tabindex="-1" id="offcanvasResponsive"
+      aria-labelledby="offcanvasResponsiveLabel">
+      <div class="offcanvas-header">
+
+        <button type="button" class="btn-close " data-bs-dismiss="offcanvas" data-bs-target="#offcanvasResponsive"
+          aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <div class="menu-item ">
+          <a class="navbar-brand ms-3"><img src="../assets/logo2.png " alt="" height="40px"></a>
+        </div>
+        <div class="menu-item menu-active " id="dashboard" onclick="toActive('menu-item','dashboard','dashboardsec')">
+          <li><i class="fa-solid fa-table-columns" style="color: #63E6BE;"></i>&nbsp;<a>Dashboard</a></li>
+        </div>
+        <div class="menu-item" id="session" onclick="toActive('menu-item','session','sessionsec')">
+          <li><i class="fa-solid fa-video" style="color: #63E6BE;"></i>&nbsp;<a>Create Session</a></li>
+        </div>
+        <div class="menu-item" id="crew" onclick="toActive('menu-item', 'crew', 'crewsec')">
+          <li><i class="fa-solid fa-people-group" style="color: #63E6BE;"></i>&nbsp;<a>Your Crew</a></li>
+        </div>
+        <!-- <div class="menu-item" id="review" onclick="toActive('menu-item' , 'review','reviewsec')">
+          <li><i class="fa-solid fa-address-card" style="color: #63E6BE;"></i>&nbsp;<a>Contact Us!</a></li>
+        </div> -->
+        <div class="menu-item" id="chat" onclick="toActive('menu-item', 'chat','chatsec')">
+          <li><i class="fa-solid fa-address-card" style="color: #63E6BE;"></i>&nbsp;<a>Contact Us!</a></li>
         </div>
 
-        <div class="col-5">
-          <ul>
-            <li>
-              <p><span>Contact us:</span> &nbsp;<a
-                  href="https://mail.google.com/mail/?view=cm&fs=1&to=crewtorofficial@gmail.com" target="_blank"><i
-                    class="fa-regular fa-paper-plane" style="color: #63E6BE;"></i></a></p>
-            </li>
-            <li><a href="" class="nav-link"><span><p>Privacy Policy</p></span></a></li>
-            <li><span>
-                <p><a href="become-mentor.html" class="nav-link">
-                    Become a Captain</a></p>
-              </span></li>
-          </ul>
+        <div class="menu-item">
+          <li><i class="fa-solid fa-right-from-bracket" style="color: #63E6BE;"></i>&nbsp;<a>Logout!</a>
+          </li>
+        </div>
+      </div>
+    </div>
+  </div>
+  <main class=" main-content">
+    <div class="head p-4">
+      <div class="col-12 col-lg-6">
+        <h2 class="fw-semibold">Welcome <span id="captainName"> Sauhard Kumar</span></h2>
+        <p>Crewtor Captain Dashboard</p>
+      </div>
+      <div class="col-6  d-lg-flex justify-content-end">
+        <a class="btn sgbtn hbtn"><i class="fa-solid fa-right-from-bracket" style="color: #ff8707;"></i>&nbsp;Logout</a>
+      </div>
+    </div>
+
+    <div class=" p-4 sections active" id="dashboardsec" style="min-height: 500px;">
+      <div class="mb-4">
+        Top Features
+      </div>
+      <div class="row">
+        <div class="col-lg-4 mb-4 ">
+          <div class="card sub_crd_2 dash_ban_crd">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-9">
+                  <div class="sub_crd_head mb-2">
+                    Create Session
+                  </div>
+                  <div class=" sub_crd_txt mb-2">
+                    Remember you have to creat your session. 
+                  </div>
+                </div>
+                <div class="col-3">
+                  <div class="sub_crd_img">
+                    <img class="sub_crd_img1" src="../assets/capregist/1-1ses.svg" alt="">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-9">
+                  <a class="btn sub_crd_btn_2 " type="button" onclick="toActive('menu-item','session','sessionsec')">Create Now</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 mb-4 ">
+          <div class="card sub_crd_5 dash_ban_crd">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-9">
+                  <div class="sub_crd_head mb-2">
+                    Your Crew
+                  </div>
+                  <div class=" mb-2">
+                    See Your Crew member after all captain should know there crew
+                  </div>
+                </div>
+                <div class="col-3">
+                  <div class="sub_crd_img">
+                    <img class="sub_crd_img1" src="../assets/capregist/Teamwork.svg" alt="">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <a  class="btn sub_crd_btn_4"  onclick="toActive('menu-item','crew','crewsec')">See Now!</button></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 mb-4 ">
+          <div class="card sub_crd dash_ban_crd">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-9">
+                  <div class="sub_crd_head mb-2">
+                    Contact us!
+                  </div>
+                  <div class=" mb-2">
+                    Facing any problem! Remember we are one chat away.
+                  </div>
+                </div>
+                <div class="col-3">
+                  <div class="sub_crd_img">
+                    <img class="sub_crd_img1" src="../assets/capregist/chat.svg" alt="">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <a class="btn sub_crd_btn_5"  onclick="toActive('menu-item','chat','chatsec')">See Now!</button></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="p-4 sections " id='sessionsec'>
+      <div class="create-session-form">
+        <h2>📝 Create a New Session</h2>
+        <form action="/submit-session" method="POST">
+
+          <!-- Session Title -->
+          <div class="form-group">
+            <label for="title">Session Title</label>
+            <input type="text" id="title" name="title" placeholder="Eg: Strategy + Doubt Solving" required />
+          </div>
+
+          <!-- Date & Time -->
+          <div class="flex-row">
+            <div class="form-group">
+              <label for="date">Date</label>
+              <input type="date" id="date" name="date" required />
+            </div>
+
+            <div class="form-group">
+              <label for="time">Time</label>
+              <input type="time" id="time" name="time" required />
+            </div>
+          </div>
+
+          <!-- Zoom Link -->
+          <div class="form-group">
+            <label for="zoom">Zoom Meeting Link</label>
+            <input type="url" id="zoom" name="zoom" placeholder="https://zoom.us/..." required />
+          </div>
+
+          <!-- Submit -->
+          <button type="submit" class="submit-btn">Create Session</button>
+        </form>
+      </div>
+    </div>
+
+
+     <div class="p-4 sections" id="crewsec">
+      <div class="crew-table-container">
+        <h2>👨‍👩‍👧‍👦 Your Crew</h2>
+        <div class="head">
+          <div class="col-sm-6 col-lg-6">
+            <h5>Your Crew</h5>
+          </div>
+          <div class="col-sm-6  d-flex justify-content-end "><button class="btn " id="chtbtn">Chat</button></div>
+        </div>
+        <!-- </div> -->
+        <caption style="color: #ddd;">List of Your Crewmates</caption>
+        <table>
+          <tr>
+            <th scope="col">Crew Member</th>
+            <th scope="col">Joined On</th>
+            <!-- <th scope="col">Your Captain Says</th> -->
+
+          </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Rohit Sharma</td>
+              <td>April 10, 2025</td>
+              <!-- <td>"Revise daily, and stay consistent. You’re doing great!"</td> -->
+              <!-- <td><button class="btn">Chat</button></td> -->
+            </tr>
+            <tr>
+              <td>Anjali Verma</td>
+              <td>April 25, 2025</td>
+              <!-- <td>"Focus on mock tests this week. Let’s discuss doubts soon."</td> -->
+              <!-- <td><button class="btn">Chat</button></td> -->
+            </tr>
+            <tr>
+              <td>Sahil Khan</td>
+              <td>May 2, 2025</td>
+              <!-- <td>"Mindset is 90% of JEE — keep the fire alive!"</td> -->
+              <!-- <td><button class="btn">Chat</button></td> -->
+            </tr>
+            <tr>
+              <td>Neha Kumari</td>
+              <td>May 5, 2025</td>
+              <!-- <td>"Great consistency! Try solving previous year papers now."</td> -->
+              <!-- <td><button class="btn">Chat</button></td> -->
+            </tr>
+            <tr>
+              <td>Deepak Saini</td>
+              <td>May 7, 2025</td>
+              <!-- <td>"Don’t panic in tests. Focus on attempt quality over quantity."</td> -->
+              <!-- <td><button class="btn">Chat</button></td> -->
+            </tr>
+            <tr>
+              <td>Kriti Sharma</td>
+              <td>May 9, 2025</td>
+              <!-- <td>"Join the Sunday live Q&A. I’ll help with Physics strategy."</td> -->
+              <!-- <td><button class="btn">Chat</button></td> -->
+            </tr>
+            <tr>
+              <td>Aryan Gupta</td>
+              <td>May 10, 2025</td>
+              <!-- <td>"Revise class notes before every mock — trust the process."</td> -->
+              <!-- <td><button class="btn">Chat</button></td> -->
+            </tr>
+            <tr>
+              <td>Sneha Rathi</td>
+              <td>May 12, 2025</td>
+              <!-- <td>"Stay calm. JEE is a marathon, not a sprint."</td> -->
+              <!-- <td><button class="btn">Chat</button></td> -->
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+<div class="p-4 sections " id="chatsec" style="min-height: 500px;">
+      <div class="chat-section">
+
+        <!-- Personal Crew Chat Card -->
+        <div class="chat-card">
+          <div class="chat-title">👥 Personal Captain Chat</div>
+          <div class="chat-desc">Our Private Captain group Please join to Stay Up to date.</div>
+          <a href="https://t.me/your-crew-link" target="_blank" class="chat-btn">Join</a>
+        </div>
+
+        <!-- Student Community Chat Card -->
+        <div class="chat-card">
+          <div class="chat-title">Admin pannel Masseage</div>
+          <div class="chat-desc">Any Problem plz Contact us!</div>
+          <a href="https://t.me/student-community-link" target="_blank" class="chat-btn mb-4"> Telegram</a>
+          <a href="https://t.me/student-community-link" target="_blank" class="chat-btn">Gmail us!</a>
         </div>
 
       </div>
-      <p class="text-center">© 2025 Crewtor. All rights reserved.</p>
-  </footer>
 
+    </div>
+
+
+
+    <footer>
+      <div class="container text-center mt-2">
+        <div class="row ms-auto  ">
+          <div class="col-5">
+            <ul>
+              <li>
+                <p><span>Follow Us:</span> &nbsp;<a href="https://www.instagram.com/crewtor.in?igsh=ZXhjeDdsNHRobWlj"
+                    target="_blank"><i class="fa-brands fa-instagram" style="color: #63E6BE;"></i></a>&nbsp; &nbsp;<a
+                    href="https://www.linkedin.com/company/crewtor/" target="_blank"><i class="fa-brands fa-linkedin"
+                      style="color: #63E6BE;"></i></a></p>
+              </li>
+              <li><a href="" class="nav-link"><span>
+                    <p>Terms and Conditions</p>
+                  </span></a></li>
+              <li><a href="aboutus.html" class="nav-link">
+                  <p><span>About Us!</span></p>
+                </a></li>
+            </ul>
+          </div>
+
+          <div class="col-5">
+            <ul>
+              <li>
+                <p><span>Contact us:</span> &nbsp;<a
+                    href="https://mail.google.com/mail/?view=cm&fs=1&to=crewtorofficial@gmail.com" target="_blank"><i
+                      class="fa-regular fa-paper-plane" style="color: #63E6BE;"></i></a></p>
+              </li>
+              <li><a href="" class="nav-link"><span>
+                    <p>Privacy Policy</p>
+                  </span></a></li>
+              <li><span>
+                  <p><a href="become-mentor.html" class="nav-link">
+                      Become a Captain</a></p>
+                </span></li>
+            </ul>
+          </div>
+
+        </div>
+        <p class="text-center">© 2025 Crewtor. All rights reserved.</p>
+    </footer>
+  </main>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
     crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-  <script src="./script.js"></script>
+  <script src="../script.js"></script>
+  <script src="../js/dashboard.js"></script>
 </body>
 
 </html>
