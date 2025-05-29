@@ -51,3 +51,31 @@ function gobackTostep(stepNumber){
 
     document.getElementById('form-step-' + stepNumber).classList.add('active');
 }
+
+
+
+document.getElementById('multiStepForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+    const data = {};
+    
+    formData.forEach((v, k) => data[k] = v);
+    data['status']= 'pending';
+    console.log(data)
+    await fetch('https://sheetdb.io/api/v1/sr7cz6s27wc0y', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ data })
+    });
+
+    Swal.fire({
+            icon: 'success',
+            title: 'Form Submited!',
+            text: 'We will notify you once we do background check.'
+          });
+    e.target.reset();
+    setTimeout(()=>{
+      window.location.href = '../index.html'
+    },3*1000)
+  });
