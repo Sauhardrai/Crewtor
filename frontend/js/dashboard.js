@@ -20,3 +20,9 @@ function toActiveSec(section,id){
     });
     document.querySelector(`#${id}`).classList.add('active');
 }   
+
+
+function logout() {
+  localStorage.removeItem("crewtor_token");
+  window.location.href = "../index.html";
+}
