@@ -7,7 +7,7 @@ async function sendOtp() {
 
   if (!otpSent) {
     // console.log(email)
-    const res = await fetch('http://localhost:8080/api/auth/sendotp', {
+    const res = await fetch('https://crewtor-backend.onrender.com/api/auth/sendotp', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email }),
@@ -28,7 +28,7 @@ async function sendOtp() {
 
   } else {
     // console.log(otpSent)
-    const res = await fetch('http://localhost:8080/api/auth/verifyotp', {
+    const res = await fetch('https://crewtor-backend.onrender.com/api/auth/verifyotp', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, otp }),
@@ -70,7 +70,7 @@ document.getElementById('signup_form').addEventListener('submit', async (e) => {
   const data = {};
   formData.forEach((v, k) => data[k] = v);
   
-  const res = await fetch('http://localhost:8080/api/auth/signup', {
+  const res = await fetch('https://crewtor-backend.onrender.com/api/auth/signup', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ data }),

@@ -4,7 +4,7 @@ if (decoded.role === 'captain') {
     const fetchDashboard = async () => {
         const token = localStorage.getItem('token');
 
-        const res = await fetch('http://localhost:8080/api/dash/cap', {
+        const res = await fetch('https://crewtor-backend.onrender.com/api/dash/cap', {
             headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -44,7 +44,7 @@ if (decoded.role === 'captain') {
         const data = {};
         formData.forEach((v, k) => data[k] = v);
 
-        const res = await fetch('http://localhost:8080/api/dash/cap/session', {
+        const res = await fetch('https://crewtor-backend.onrender.com/api/dash/cap/session', {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
             body: JSON.stringify({ data }),
@@ -74,7 +74,7 @@ if (decoded.role === 'captain') {
         const formData = new FormData(e.target);
         const data = {}
         formData.forEach((v, k) => data[k] = v);
-        const res = await fetch('http://localhost:8080/api/dash/cap/profile', {
+        const res = await fetch('https://crewtor-backend.onrender.com/api/dash/cap/profile', {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
             body: JSON.stringify({ data }),
@@ -109,7 +109,7 @@ if (decoded.role === 'captain') {
     const fetchDashboard = async () => {
         const token = localStorage.getItem('token');
 
-        const res = await fetch('http://localhost:8080/api/dash/crew', {
+        const res = await fetch('https://crewtor-backend.onrender.com/api/dash/crew', {
             headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -130,7 +130,7 @@ if (decoded.role === 'captain') {
     fetchDashboard();
 
     const fetchCaptain = async (captain) => {
-        const res = await fetch(`http://localhost:8080/api/dash/crew/captain/${captain}`, {
+        const res = await fetch(`https://crewtor-backend.onrender.com/api/dash/crew/captain/${captain}`, {
             method: "GET",
             headers: { 'Content-Type': 'application/json' },
             // body: JSON.stringify({captain})
@@ -178,7 +178,7 @@ if (decoded.role === 'captain') {
         const formData = new FormData(e.target);
         const data = {}
         formData.forEach((v, k) => data[k] = v);
-        const res = await fetch('http://localhost:8080/api/dash/crew/profile', {
+        const res = await fetch('https://crewtor-backend.onrender.com/api/dash/crew/profile', {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
             body: JSON.stringify({ data }),
