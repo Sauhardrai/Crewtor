@@ -1,4 +1,236 @@
-function toActive(secName, id, id2= none) {
+const token = localStorage.getItem('token')
+const decoded = jwt_decode(token)
+if (decoded.role === 'captain') {
+    const fetchDashboard = async () => {
+        const token = localStorage.getItem('token');
+
+        const res = await fetch('http://localhost:8080/api/dash/cap', {
+            headers: { Authorization: `Bearer ${token}` },
+        });
+
+        const { data } = await res.json();
+        if (res.ok) {
+            document.getElementById('captainName').innerText = data.name;
+            const form = document.getElementById('profileForm')
+            form.elements['name'].value = data.name
+            form.elements['email'].value = data.email
+
+            const crew = data.crewmate;
+
+            crew.forEach((crewmate) => {
+                const formattedDate = new Date(crewmate.joinAt).toLocaleDateString('en-GB', {
+                    day: '2-digit',
+                    month: 'long',
+                    year: 'numeric'
+                });
+                document.getElementById('crewtable').innerHTML= `
+                <tr>
+                <td>${crewmate.name}</td>
+                <td>${formattedDate}</td>
+                </tr>`
+            })
+
+        } else {
+            alert('Please login again.');
+            window.location.href = 'login.html';
+        }
+    };
+    fetchDashboard();
+
+    document.getElementById('sessionForm').addEventListener('submit', async (e) => {
+        e.preventDefault()
+
+        const formData = new FormData(e.target);
+        const data = {};
+        formData.forEach((v, k) => data[k] = v);
+
+        const res = await fetch('http://localhost:8080/api/dash/cap/session', {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+            body: JSON.stringify({ data }),
+        });
+        const data_ = await res.json()
+
+        if (res.ok) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Session Created',
+            })
+            setTimeout(() => {
+                toActive('menu-item', 'dashboard', 'dashboardsec')
+            }, 2 * 1000);
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Session is not Created',
+                text: data_.message
+            })
+        }
+    });
+
+    document.getElementById('profileForm').addEventListener('submit', async (e) => {
+        e.preventDefault()
+
+        const formData = new FormData(e.target);
+        const data = {}
+        formData.forEach((v, k) => data[k] = v);
+        const res = await fetch('http://localhost:8080/api/dash/cap/profile', {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+            body: JSON.stringify({ data }),
+        });
+        const data_ = await res.json()
+
+        if (res.ok) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Profile updated ',
+            })
+            setTimeout(() => {
+                window.location.reload()
+            }, 1 * 1000)
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Profile Is not Updated',
+                text: data_.message
+            })
+        }
+
+
+
+    })
+
+
+
+
+
+} else if (decoded.role === 'user') {
+    const fetchDashboard = async () => {
+        const token = localStorage.getItem('token');
+
+        const res = await fetch('http://localhost:8080/api/dash/crew', {
+            headers: { Authorization: `Bearer ${token}` },
+        });
+
+        const { data } = await res.json();
+        if (res.ok) {
+
+            document.getElementById('name').innerText = data.name;
+            const form = document.getElementById('profileForm')
+            form.elements['name'].value = data.name
+            form.elements['email'].value = data.email
+            fetchCaptain(data.captain)
+
+        } else {
+            alert('Please login again.');
+            window.location.href = 'login.html';
+        }
+    };
+    fetchDashboard();
+
+    const fetchCaptain = async (captain) => {
+        const res = await fetch(`http://localhost:8080/api/dash/crew/captain/${captain}`, {
+            method: "GET",
+            headers: { 'Content-Type': 'application/json' },
+            // body: JSON.stringify({captain})
+        });
+
+        const { data } = await res.json();
+        if (res.ok) {
+            document.getElementById('capName').innerText = data.name;
+            const crew = data.crewmate
+            const session = data.session
+            console.log(session)
+            document.getElementById('sessionTable').innerHTML = `
+            <tr>
+            <td>${session.title}</td>
+            <td>${session.date}</td>
+            <td>${session.time}</td>
+            <td><a class="btn" href=${session.link} target="_blank">join</a></td>
+            </tr>`
+
+
+
+            crew.forEach((crewmate) => {
+                const formattedDate = new Date(crewmate.joinAt).toLocaleDateString('en-GB', {
+                    day: '2-digit',
+                    month: 'long',
+                    year: 'numeric'
+                });
+                document.getElementById('crewtable').innerHTML= `
+                <tr>
+                <td>${crewmate.name}</td>
+                <td>${formattedDate}</td>
+                </tr>`
+            })
+
+        } else {
+            alert('Please login again.');
+            window.location.href = 'login.html';
+        }
+
+    }
+
+    document.getElementById('profileForm').addEventListener('submit', async (e) => {
+        e.preventDefault()
+
+        const formData = new FormData(e.target);
+        const data = {}
+        formData.forEach((v, k) => data[k] = v);
+        const res = await fetch('http://localhost:8080/api/dash/crew/profile', {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+            body: JSON.stringify({ data }),
+        });
+        const data_ = await res.json()
+
+        if (res.ok) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Profile updated ',
+            })
+            setTimeout(() => {
+                window.location.reload()
+            }, 1 * 1000)
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Profile Is not Updated',
+                text: data_.message
+            })
+        }
+    });
+
+    document.getElementById('review_form').addEventListener('submit', async (e)=>{
+        e.preventDefault()
+        const formData = new FormData(e.target);
+    const data = {};
+    data['Email']= decoded.email;
+    formData.forEach((v, k) => data[k] = v);
+    
+
+    await fetch('https://sheetdb.io/api/v1/sr7cz6s27wc0y?sheet=sheet2', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ data })
+    });
+
+    Swal.fire({
+            icon: 'success',
+            title: 'Form Submited!',
+            
+          });
+    e.target.reset();
+    })
+}
+
+
+
+
+
+
+function toActive(secName, id, id2 = none) {
     let menu = document.querySelectorAll(`.${secName}`);
     menu.forEach(element => {
         if (element.classList.contains('menu-active')) {
@@ -11,18 +243,18 @@ function toActive(secName, id, id2= none) {
 }
 
 
-function toActiveSec(section,id){
+function toActiveSec(section, id) {
     let sectons = document.querySelectorAll(`.${section}`);
     sectons.forEach(ele => {
-        if (ele.classList.contains('active')){
+        if (ele.classList.contains('active')) {
             ele.classList.remove('active');
         }
     });
     document.querySelector(`#${id}`).classList.add('active');
-}   
+}
 
 
 function logout() {
-  localStorage.removeItem("crewtor_token");
-  window.location.href = "../index.html";
+    localStorage.removeItem("token");
+    window.location.href = "../index.html";
 }

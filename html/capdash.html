@@ -31,6 +31,9 @@
 
   <link rel="stylesheet" href="../style.css">
   <link rel="stylesheet" href="../css/dashboard.css">
+  <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
+
+
 </head>
 
 <body>
@@ -61,15 +64,16 @@
         <div class="menu-item menu-active " id="dashboard" onclick="toActive('menu-item','dashboard','dashboardsec')">
           <li><i class="fa-solid fa-table-columns" style="color: #63E6BE;"></i>&nbsp;<a>Dashboard</a></li>
         </div>
+        <div class="menu-item" id="profile" onclick="toActive('menu-item' , 'profile','profilesec')">
+          <li><i class="fa-solid fa-address-card" style="color: #63E6BE;"></i>&nbsp;<a>Update Profile!</a></li>
+        </div>
         <div class="menu-item" id="session" onclick="toActive('menu-item','session','sessionsec')">
           <li><i class="fa-solid fa-video" style="color: #63E6BE;"></i>&nbsp;<a>Create Session</a></li>
         </div>
         <div class="menu-item" id="crew" onclick="toActive('menu-item', 'crew', 'crewsec')">
           <li><i class="fa-solid fa-people-group" style="color: #63E6BE;"></i>&nbsp;<a>Your Crew</a></li>
         </div>
-        <!-- <div class="menu-item" id="review" onclick="toActive('menu-item' , 'review','reviewsec')">
-          <li><i class="fa-solid fa-address-card" style="color: #63E6BE;"></i>&nbsp;<a>Contact Us!</a></li>
-        </div> -->
+        
         <div class="menu-item" id="chat" onclick="toActive('menu-item', 'chat','chatsec')">
           <li><i class="fa-solid fa-address-card" style="color: #63E6BE;"></i>&nbsp;<a>Contact Us!</a></li>
         </div>
@@ -84,14 +88,16 @@
   <main class=" main-content">
     <div class="head p-4">
       <div class="col-12 col-lg-6">
-        <h2 class="fw-semibold">Welcome <span id="captainName"> Sauhard Kumar</span></h2>
+        <h2 class="fw-semibold">Welcome <span id="captainName">anonymous</span></h2>
         <p>Crewtor Captain Dashboard</p>
       </div>
       <div class="col-6  d-lg-flex justify-content-end">
-        <a class="btn sgbtn hbtn" onclick="logout()"><i class="fa-solid fa-right-from-bracket" style="color: #ff8707;"></i>&nbsp;Logout</a>
+        <a class="btn sgbtn hbtn" onclick="logout()"><i class="fa-solid fa-right-from-bracket"
+            style="color: #ff8707;"></i>&nbsp;Logout</a>
       </div>
     </div>
 
+    
     <div class=" p-4 sections active" id="dashboardsec" style="min-height: 500px;">
       <div class="mb-4">
         Top Features
@@ -106,7 +112,7 @@
                     Create Session
                   </div>
                   <div class=" sub_crd_txt mb-2">
-                    Remember you have to creat your session. 
+                    Remember you have to creat your session.
                   </div>
                 </div>
                 <div class="col-3">
@@ -117,7 +123,8 @@
               </div>
               <div class="row">
                 <div class="col-9">
-                  <a class="btn sub_crd_btn_2 " type="button" onclick="toActive('menu-item','session','sessionsec')">Create Now</a>
+                  <a class="btn sub_crd_btn_2 " type="button"
+                    onclick="toActive('menu-item','session','sessionsec')">Create Now</a>
                 </div>
               </div>
             </div>
@@ -144,7 +151,7 @@
               </div>
               <div class="row">
                 <div class="col-12">
-                  <a  class="btn sub_crd_btn_4"  onclick="toActive('menu-item','crew','crewsec')">See Now!</button></a>
+                  <a class="btn sub_crd_btn_4" onclick="toActive('menu-item','crew','crewsec')">See Now!</button></a>
                 </div>
               </div>
             </div>
@@ -171,7 +178,7 @@
               </div>
               <div class="row">
                 <div class="col-12">
-                  <a class="btn sub_crd_btn_5"  onclick="toActive('menu-item','chat','chatsec')">See Now!</button></a>
+                  <a class="btn sub_crd_btn_5" onclick="toActive('menu-item','chat','chatsec')">See Now!</button></a>
                 </div>
               </div>
             </div>
@@ -180,11 +187,37 @@
       </div>
     </div>
 
+    <div class="p-4 sections" id="profilesec">
+      <div class="create-session-form">
+        <h2>Your Profile </h2>
+        <form method="Put" id="profileForm">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name"  required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email"  required />
+          </div>
+
+          <div class="form-group">
+            <label for="curntpassword">Current Password</label>
+            <input type="password" id="curntpassword" name="curntpassword" placeholder="Enter Current password"  required />
+          </div>
+          <div class="form-group">
+            <label for="newpassword">NEW Password</label>
+            <input type="password" id="newpassword" name="newpassword" placeholder="Enter New password" />
+          </div>
+          <!-- Submit -->
+          <button type="submit" class="submit-btn">Update Profile</button>
+        </form>
+      </div>
+    </div>
 
     <div class="p-4 sections " id='sessionsec'>
       <div class="create-session-form">
         <h2>📝 Create a New Session</h2>
-        <form action="/submit-session" method="POST">
+        <form method="POST" id="sessionForm">
 
           <!-- Session Title -->
           <div class="form-group">
@@ -218,7 +251,7 @@
     </div>
 
 
-     <div class="p-4 sections" id="crewsec">
+    <div class="p-4 sections" id="crewsec">
       <div class="crew-table-container">
         <h2>👨‍👩‍👧‍👦 Your Crew</h2>
         <div class="head">
@@ -237,61 +270,20 @@
 
           </tr>
           </thead>
-          <tbody>
+          <tbody id="crewtable">
             <tr>
               <td>Rohit Sharma</td>
               <td>April 10, 2025</td>
               <!-- <td>"Revise daily, and stay consistent. You’re doing great!"</td> -->
               <!-- <td><button class="btn">Chat</button></td> -->
             </tr>
-            <tr>
-              <td>Anjali Verma</td>
-              <td>April 25, 2025</td>
-              <!-- <td>"Focus on mock tests this week. Let’s discuss doubts soon."</td> -->
-              <!-- <td><button class="btn">Chat</button></td> -->
-            </tr>
-            <tr>
-              <td>Sahil Khan</td>
-              <td>May 2, 2025</td>
-              <!-- <td>"Mindset is 90% of JEE — keep the fire alive!"</td> -->
-              <!-- <td><button class="btn">Chat</button></td> -->
-            </tr>
-            <tr>
-              <td>Neha Kumari</td>
-              <td>May 5, 2025</td>
-              <!-- <td>"Great consistency! Try solving previous year papers now."</td> -->
-              <!-- <td><button class="btn">Chat</button></td> -->
-            </tr>
-            <tr>
-              <td>Deepak Saini</td>
-              <td>May 7, 2025</td>
-              <!-- <td>"Don’t panic in tests. Focus on attempt quality over quantity."</td> -->
-              <!-- <td><button class="btn">Chat</button></td> -->
-            </tr>
-            <tr>
-              <td>Kriti Sharma</td>
-              <td>May 9, 2025</td>
-              <!-- <td>"Join the Sunday live Q&A. I’ll help with Physics strategy."</td> -->
-              <!-- <td><button class="btn">Chat</button></td> -->
-            </tr>
-            <tr>
-              <td>Aryan Gupta</td>
-              <td>May 10, 2025</td>
-              <!-- <td>"Revise class notes before every mock — trust the process."</td> -->
-              <!-- <td><button class="btn">Chat</button></td> -->
-            </tr>
-            <tr>
-              <td>Sneha Rathi</td>
-              <td>May 12, 2025</td>
-              <!-- <td>"Stay calm. JEE is a marathon, not a sprint."</td> -->
-              <!-- <td><button class="btn">Chat</button></td> -->
-            </tr>
+            
           </tbody>
         </table>
       </div>
     </div>
 
-<div class="p-4 sections " id="chatsec" style="min-height: 500px;">
+    <div class="p-4 sections " id="chatsec" style="min-height: 500px;">
       <div class="chat-section">
 
         <!-- Personal Crew Chat Card -->
@@ -356,6 +348,8 @@
         <p class="text-center">© 2025 Crewtor. All rights reserved.</p>
     </footer>
   </main>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
     crossorigin="anonymous"></script>

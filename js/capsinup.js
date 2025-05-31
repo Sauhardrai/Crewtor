@@ -62,7 +62,7 @@ document.getElementById('multiStepForm').addEventListener('submit', async (e) =>
     
     formData.forEach((v, k) => data[k] = v);
     data['status']= 'pending';
-    console.log(data)
+
     await fetch('https://sheetdb.io/api/v1/sr7cz6s27wc0y', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -77,5 +77,5 @@ document.getElementById('multiStepForm').addEventListener('submit', async (e) =>
     e.target.reset();
     setTimeout(()=>{
       window.location.href = '../index.html'
-    },3*1000)
+    },2*1000)
   });

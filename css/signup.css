@@ -1,13 +1,16 @@
 .singup-div{
      background-color: transparent;
-     height: 700px;
+     /* height: 600px; */
      width: 500px;         /* or any responsive width 343a43 */
   /* aspect-ratio: 1 / 1.1; */
   border-radius: 30px;
   backdrop-filter: blur(10px);
 }
+.active{
+  display: block !important;
+}
 .hidden{
-  display: none;
+  display: none !important;
 }
 
 .Container h1 {
@@ -80,9 +83,7 @@
 
 }
 
-.form_div{
-  margin: 5rem auto auto auto;
-}
+
 
 
 
