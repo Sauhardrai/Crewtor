@@ -15,14 +15,21 @@ const userSchema = new mongoose.Schema({
         type:String,
         
     },
+    password:{
+        type: String,
+        required: true
+    },
     role:{
         type:String,
         default: "user"
     },
     phone:{
         type: Number,
-        unique: true,
+        
     },
+
+    joinAt:Date,
+    
     captain:{
         type: Schema.Types.ObjectId,
         ref: "captain"

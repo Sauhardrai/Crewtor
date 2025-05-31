@@ -32,6 +32,8 @@
 
   <link rel="stylesheet" href="../style.css">
   <link rel="stylesheet" href="../css/dashboard.css">
+  <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
+
 </head>
 
 <body>
@@ -62,6 +64,9 @@
         <div class="menu-item menu-active " id="dashboard" onclick="toActive('menu-item','dashboard','dashboardsec')">
           <li><i class="fa-solid fa-table-columns" style="color: #63E6BE;"></i>&nbsp;<a>Dashboard</a></li>
         </div>
+        <div class="menu-item" id="profile" onclick="toActive('menu-item' , 'profile','profilesec')">
+          <li><i class="fa-solid fa-address-card" style="color: #63E6BE;"></i>&nbsp;<a>Update Profile!</a></li>
+        </div>
         <div class="menu-item" id="session" onclick="toActive('menu-item','session','sessionsec')">
           <li><i class="fa-solid fa-video" style="color: #63E6BE;"></i>&nbsp;<a>Upcoming Sessions</a></li>
         </div>
@@ -86,7 +91,7 @@
   <main class=" main-content">
     <div class="head p-4">
       <div class="col-12 col-lg-6">
-        <h2 class="fw-semibold">Welcome <span id="name"> Sauhard Kumar</span></h2>
+        <h2 class="fw-semibold">Welcome <span id="name">anonymous</span></h2>
         <p>Crewtor Student Dashboard</p>
       </div>
       <div class="col-6  d-lg-flex justify-content-end">
@@ -282,6 +287,33 @@
       </div>
     </div>
 
+    <div class="p-4 sections" id="profilesec">
+      <div class="create-session-form">
+        <h2>Your Profile </h2>
+        <form method="Put" id="profileForm">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name"  required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email"  required />
+          </div>
+
+          <div class="form-group">
+            <label for="curntpassword">Current Password</label>
+            <input type="password" id="curntpassword" name="curntpassword" placeholder="Enter Current password"  required />
+          </div>
+          <div class="form-group">
+            <label for="newpassword">NEW Password</label>
+            <input type="password" id="newpassword" name="newpassword" placeholder="Enter New password" />
+          </div>
+          <!-- Submit -->
+          <button type="submit" class="submit-btn">Update Profile</button>
+        </form>
+      </div>
+    </div>
+
     <div class="p-4 sections" id="sessionsec">
 
       <div class="session-table-container">
@@ -292,31 +324,15 @@
               <th>Topic</th>
               <th>Date</th>
               <th>Time</th>
-              <th>Captain</th>
               <th></th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="sessionTable">
             <tr>
               <td>How to Handle Backlogs</td>
               <td>May 28, 2025</td>
               <td>6:00 PM</td>
-              <td>Mahesh Meena (IIT Delhi)</td>
-              <td><button class="btn">Join</button></td>
-            </tr>
-            <tr>
-              <td>Smart Revision Strategy</td>
-              <td>May 30, 2025</td>
-              <td>5:30 PM</td>
-              <td>Aman Rathore (IIT KGP)</td>
-              <td><button class="btn">Join</button></td>
-            </tr>
-            <tr>
-              <td>JEE Mindset & Motivation</td>
-              <td>June 2, 2025</td>
-              <td>7:00 PM</td>
-              <td>Sunny Parihar (NIT Bhopal)</td>
-              <td><button class="btn">Join</button></td>
+              <td><a class="btn" >Join</a></td>
             </tr>
           </tbody>
         </table>
@@ -343,55 +359,13 @@
 
           </tr>
           </thead>
-          <tbody>
+          <tbody id="crewtable">
             <tr>
               <td>Rohit Sharma</td>
               <td>April 10, 2025</td>
               <!-- <td>"Revise daily, and stay consistent. You’re doing great!"</td> -->
               <!-- <td><button class="btn">Chat</button></td> -->
-            </tr>
-            <tr>
-              <td>Anjali Verma</td>
-              <td>April 25, 2025</td>
-              <!-- <td>"Focus on mock tests this week. Let’s discuss doubts soon."</td> -->
-              <!-- <td><button class="btn">Chat</button></td> -->
-            </tr>
-            <tr>
-              <td>Sahil Khan</td>
-              <td>May 2, 2025</td>
-              <!-- <td>"Mindset is 90% of JEE — keep the fire alive!"</td> -->
-              <!-- <td><button class="btn">Chat</button></td> -->
-            </tr>
-            <tr>
-              <td>Neha Kumari</td>
-              <td>May 5, 2025</td>
-              <!-- <td>"Great consistency! Try solving previous year papers now."</td> -->
-              <!-- <td><button class="btn">Chat</button></td> -->
-            </tr>
-            <tr>
-              <td>Deepak Saini</td>
-              <td>May 7, 2025</td>
-              <!-- <td>"Don’t panic in tests. Focus on attempt quality over quantity."</td> -->
-              <!-- <td><button class="btn">Chat</button></td> -->
-            </tr>
-            <tr>
-              <td>Kriti Sharma</td>
-              <td>May 9, 2025</td>
-              <!-- <td>"Join the Sunday live Q&A. I’ll help with Physics strategy."</td> -->
-              <!-- <td><button class="btn">Chat</button></td> -->
-            </tr>
-            <tr>
-              <td>Aryan Gupta</td>
-              <td>May 10, 2025</td>
-              <!-- <td>"Revise class notes before every mock — trust the process."</td> -->
-              <!-- <td><button class="btn">Chat</button></td> -->
-            </tr>
-            <tr>
-              <td>Sneha Rathi</td>
-              <td>May 12, 2025</td>
-              <!-- <td>"Stay calm. JEE is a marathon, not a sprint."</td> -->
-              <!-- <td><button class="btn">Chat</button></td> -->
-            </tr>
+            </tr>      
           </tbody>
         </table>
       </div>
@@ -422,7 +396,7 @@
     <div class="p-4 sections" id="reviewsec">
       <div class="review-section">
         <h2> Review Your Session with Captain</h2>
-
+        <form id="review_form" >
         <!-- Starability Rating -->
         <fieldset class="starability-slot">
           
@@ -442,50 +416,13 @@
 
         <!-- Feedback -->
         <label for="feedback">Write your feedback:</label>
-        <textarea id="feedback" placeholder="What went well? What could be improved?"></textarea>
+        <textarea id="feedback" placeholder="What went well? What could be improved?" name="feedback"></textarea>
 
         <!-- Submit Button -->
         <button class="submit-btn">Submit Review</button>
+        </form>
       </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -533,6 +470,7 @@
         <p class="text-center">© 2025 Crewtor. All rights reserved.</p>
     </footer>
   </main>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
     crossorigin="anonymous"></script>

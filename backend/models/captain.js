@@ -17,12 +17,29 @@ const captainSchema = new mongoose.Schema({
     phone: {
         type: Number,
         required: true,
-        unique:true
+    },
+    password:{
+        type:String,
+        required: true
+    },
+    studentcount:{
+        type:Number,
+        default:0
     },
     crewmate:[{
         type: Schema.Types.ObjectId,
-        ref: 'user.js'
-    }]
+        ref: 'user'
+    }],
+
+    session:{
+        type: {
+            title:String,
+            date: String,
+            time: String,
+            link: String,
+        },
+
+    }
 });
 
 
