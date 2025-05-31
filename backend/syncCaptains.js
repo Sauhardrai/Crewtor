@@ -2,7 +2,7 @@ import { google } from 'googleapis';
 import mongoose from 'mongoose';
 import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
-import credentials from './crewtor_servish.json' with { type: 'json' };
+
 import Captain from './models/captain.js';
 import bcrypt from 'bcryptjs'; // ES Module style
 dotenv.config();
@@ -13,9 +13,12 @@ async function main() {
     console.log('✅ MongoDB connected');
 
     const auth = new google.auth.GoogleAuth({
-        credentials,
-        scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'],
-    });
+  credentials: {
+    client_email: process.env.GOOGLE_CLIENT_EMAIL,
+    private_key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+  },
+  scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'],
+});
 
     const sheets = google.sheets({ version: 'v4', auth });
     const sheetId = '1ubShSiYV5Ke789RE77bmgpbshtBySdeEF6wS966ejLA';

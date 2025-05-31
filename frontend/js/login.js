@@ -6,7 +6,7 @@ if (!token) {
         const email = document.getElementById('inputemail').value;
         const password = document.getElementById('inputpassword').value
 
-        const res = await fetch('http://localhost:8080/api/auth/login', {
+        const res = await fetch('https://crewtor-backend.onrender.com/api/auth/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, password }),
