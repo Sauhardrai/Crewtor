@@ -3,7 +3,7 @@ const token = localStorage.getItem('token');
 async function fetchDash() {
     let crewHtml =``;
     let captainhtml=``;
-    const res = await fetch('http://localhost:8080/api/admin/dashboard', {
+    const res = await fetch('https://crewtor-backend.onrender.com/api/admin/dashboard', {
     method: "GET",
     headers: { 'Content-Type': 'application/json' },
   });
