@@ -36,8 +36,10 @@ if (!token) {
                     window.location.href = 'crewdash.html'
                 }, 2 * 1000)
 
+            } else if (decoded.role === 'admin') {
+                window.location.href = 'adminDash.html'
             }
-        }else {
+        } else {
             console.error("Login failed:", data.message);
             Swal.fire({
                 icon: 'error',
@@ -45,17 +47,17 @@ if (!token) {
                 text: data.message
             })
             setTimeout(() => {
-                    window.location.href = 'login.html'
-                }, 3 * 1000)
-        } 
+                window.location.href = 'login.html'
+            }, 3 * 1000)
+        }
 
     });
-    
 
 
 
 
-}else {
+
+} else {
     const decoded = jwt_decode(token);
     if (decoded.role === 'captain') {
         Swal.fire({
@@ -66,15 +68,17 @@ if (!token) {
         setTimeout(() => {
             window.location.href = 'capdash.html'
         }, 2 * 1000)
-    }else if (decoded.role === 'user') {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'login successfull',
-                    text: 'welcome back  Redirecting to Dashboard.....'
-                });
-                setTimeout(() => {
-                    window.location.href = 'crewdash.html'
-                }, 2 * 1000)
+    } else if (decoded.role === 'user') {
+        Swal.fire({
+            icon: 'success',
+            title: 'login successfull',
+            text: 'welcome back  Redirecting to Dashboard.....'
+        });
+        setTimeout(() => {
+            window.location.href = 'crewdash.html'
+        }, 2 * 1000)
 
-            }
+    } else if (decoded.role === 'admin') {
+        window.location.href = 'adminDash.html'
+    }
 }

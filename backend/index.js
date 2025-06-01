@@ -4,6 +4,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import authRoutes from './routes/auth.js'
 import dashRoutes from './routes/dashboard.js'
+import adminRoutes from './routes/admin.js'
 import cors from 'cors'
 
 const app = express();
@@ -43,11 +44,13 @@ mongoose.connection.on('disconnected', () => {
 
 main();
 
+app.get('/home', (req,res)=>{
+    res.status(200).json({message:"sever connacted"})
+});
 
-
-app.use('/api/auth' , authRoutes)
-app.use('/api/dash', dashRoutes)
-
+app.use('/api/auth' , authRoutes);
+app.use('/api/dash', dashRoutes);
+app.use('/api/admin', adminRoutes);
 
 
 

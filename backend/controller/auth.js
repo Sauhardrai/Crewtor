@@ -7,6 +7,7 @@ import Captain from '../models/captain.js';
 import User from '../models/user.js';
 import nodemailer from 'nodemailer';
 import Otp from '../models/otp.js';
+import Admin from '../models/admin.js'
 
 
 
@@ -22,7 +23,10 @@ export const login = async (req, res) => {
       foundUser = await User.findOne({ email });
       role = 'user';
     }
-
+    if (!foundUser){
+      foundUser = await Admin.findOne({ email});
+      role= 'admin';
+    }
     if (!foundUser) {
       return res.status(404).json({ message: 'User not found' });
     }
