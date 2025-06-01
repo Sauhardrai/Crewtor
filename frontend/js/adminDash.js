@@ -9,8 +9,6 @@ async function fetchDash() {
   });
 
   const {userCount , captainCount, captain , user} = await res.json();
-  console.log(captain)
-  console.log(user)
   if (res.ok) {
         document.getElementById('total_user').innerText = userCount
         document.getElementById('total_captain').innerText = captainCount
