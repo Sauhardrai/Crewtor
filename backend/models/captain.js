@@ -30,7 +30,10 @@ const captainSchema = new mongoose.Schema({
         type: Schema.Types.ObjectId,
         ref: 'user'
     }],
-
+    telegram:{
+        type:String,
+        default: ''
+    },
     session:{
         type: {
             title:String,
