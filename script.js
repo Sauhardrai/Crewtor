@@ -1,9 +1,9 @@
 
 window.addEventListener('DOMContentLoaded', function () {
-  if (! getItemWithExpiry('crewtorAnnouncement')) {
+  if (!getItemWithExpiry('crewtorAnnouncement')) {
     Swal.fire({
       title: '🎉 Special Offer!',
-      text: 'First 50 students get FREE registration on Crewtor!',
+      text: 'First 50 students get FREE registration on Crewtor! sessions Start from 10 june',
       icon: 'info',
       confirmButtonText: 'Register Now',
       showCloseButton: true,
@@ -15,9 +15,9 @@ window.addEventListener('DOMContentLoaded', function () {
       if (result.isConfirmed) {
         window.location.href = './html/signup.html'; // 👈 your link here
       }
-      setItemWithExpiry('crewtorAnnouncement', 'shown', 2 * 60 * 60 * 1000);
+      setItemWithExpiry('crewtorAnnouncement', 'shown', 1 * 60 * 60 * 1000);
     });
-    localStorage.setItem('crewtorOfferShown', 'true');
+  
   }
 });
 
@@ -94,10 +94,15 @@ questions.forEach((question) => {
 
 
 
+async function fetchserver() {
+  const res = await fetch('https://crewtor-backend.onrender.com/home', {
+    method: "GET",
+    headers: { 'Content-Type': 'application/json' },
+  });
 
+  const data = await res.json();
+  console.log(data.message)
+};
 
-
-
-
-
+fetchserver()
 

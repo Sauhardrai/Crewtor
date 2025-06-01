@@ -16,6 +16,10 @@ async function sendOtp() {
     const data = await res.json();
 
     if (res.ok) {
+      Swal.fire({
+        icon: 'success',
+        title: `Email with otp Send`
+      });
       otpSent = true;
       btn.textContent = 'Verify OTP';
       document.getElementById('inputotp').focus();
