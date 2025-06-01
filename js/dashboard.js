@@ -2,6 +2,7 @@ const token = localStorage.getItem('token')
 const decoded = jwt_decode(token)
 if (decoded.role === 'captain') {
     const fetchDashboard = async () => {
+        let crewHtml=``
         const token = localStorage.getItem('token');
 
         const res = await fetch('https://crewtor-backend.onrender.com/api/dash/cap', {
@@ -23,12 +24,13 @@ if (decoded.role === 'captain') {
                     month: 'long',
                     year: 'numeric'
                 });
-                document.getElementById('crewtable').innerHTML= `
+                crewHtml+= `
                 <tr>
                 <td>${crewmate.name}</td>
                 <td>${formattedDate}</td>
                 </tr>`
-            })
+            });
+            document.getElementById('crewtable').innerHTML = crewHtml;
 
         } else {
             alert('Please login again.');
@@ -138,6 +140,7 @@ if (decoded.role === 'captain') {
 
         const { data } = await res.json();
         if (res.ok) {
+            let crewHtml=``
             document.getElementById('capName').innerText = data.name;
             const crew = data.crewmate
             const session = data.session
@@ -158,12 +161,13 @@ if (decoded.role === 'captain') {
                     month: 'long',
                     year: 'numeric'
                 });
-                document.getElementById('crewtable').innerHTML= `
+                crewHtml+= `
                 <tr>
                 <td>${crewmate.name}</td>
                 <td>${formattedDate}</td>
                 </tr>`
-            })
+            });
+            document.getElementById('crewtable').innerHTML = crewHtml;
 
         } else {
             alert('Please login again.');
