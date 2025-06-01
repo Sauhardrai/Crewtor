@@ -140,6 +140,7 @@ if (decoded.role === 'captain') {
 
         const { data } = await res.json();
         if (res.ok) {
+            document.getElementById('crewlink').href= data.telegram;
             let crewHtml=``
             document.getElementById('capName').innerText = data.name;
             const crew = data.crewmate
