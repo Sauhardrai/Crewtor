@@ -3,7 +3,7 @@ window.addEventListener('DOMContentLoaded', function () {
   if (!getItemWithExpiry('crewtorAnnouncement')) {
     Swal.fire({
       title: '🎉 Special Offer!',
-      text: 'First 50 students get FREE registration on Crewtor! sessions Start from 10 june',
+      text: 'First 50 students get FREE registration on Crewtor! sessions Start from 1 july',
       icon: 'info',
       confirmButtonText: 'Register Now',
       showCloseButton: true,

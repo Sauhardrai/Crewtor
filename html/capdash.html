@@ -73,7 +73,7 @@
         <div class="menu-item" id="crew" onclick="toActive('menu-item', 'crew', 'crewsec')">
           <li><i class="fa-solid fa-people-group" style="color: #63E6BE;"></i>&nbsp;<a>Your Crew</a></li>
         </div>
-        
+
         <div class="menu-item" id="chat" onclick="toActive('menu-item', 'chat','chatsec')">
           <li><i class="fa-solid fa-address-card" style="color: #63E6BE;"></i>&nbsp;<a>Contact Us!</a></li>
         </div>
@@ -97,7 +97,7 @@
       </div>
     </div>
 
-    
+
     <div class=" p-4 sections active" id="dashboardsec" style="min-height: 500px;">
       <div class="mb-4">
         Top Features
@@ -193,16 +193,17 @@
         <form method="Put" id="profileForm">
           <div class="form-group">
             <label for="name">Name</label>
-            <input type="text" id="name" name="name"  required />
+            <input type="text" id="name" name="name" required />
           </div>
           <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" id="email" name="email"  required />
+            <input type="email" id="email" name="email" required />
           </div>
 
           <div class="form-group">
             <label for="curntpassword">Current Password</label>
-            <input type="password" id="curntpassword" name="curntpassword" placeholder="Enter Current password"  required />
+            <input type="password" id="curntpassword" name="curntpassword" placeholder="Enter Current password"
+              required />
           </div>
           <div class="form-group">
             <label for="newpassword">NEW Password</label>
@@ -248,6 +249,66 @@
           <button type="submit" class="submit-btn">Create Session</button>
         </form>
       </div>
+
+      <div class="session-table-container">
+        <h2>📅 Upcoming Sessions</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Topic</th>
+              <th>Date</th>
+              <th>Time</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="sessionTable">
+            <tr>
+              <td>How to Handle Backlogs</td>
+              <td>May 28, 2025</td>
+              <td>6:00 PM</td>
+              <td><a class="btn">Edit Session</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Edit Button -->
+      
+
+      <!-- Popup Form -->
+      <div id="editFormPopup" class="popup-form ">
+        <div class="popup-content">
+          <span class="close-btn" onclick="closeEditForm()">&times;</span>
+          <h3>Edit Session</h3>
+           <form method="PUT" id="editForm">
+          <!-- Session Title -->
+          <div class="form-group">
+            <label for="title">Session Title</label>
+            <input type="text"  name="title" placeholder="Eg: Strategy + Doubt Solving" required />
+          </div>
+          <!-- Date & Time -->
+          <div class="flex-row">
+            <div class="form-group">
+              <label for="date">Date</label>
+              <input type="date" name="date" required />
+            </div>
+            <div class="form-group">
+              <label for="time">Time</label>
+              <input type="time" name="time" required />
+            </div>
+          </div>
+          <!-- Zoom Link -->
+          <div class="form-group">
+            <label for="zoom">Zoom Meeting Link</label>
+            <input type="url" name="zoom" placeholder="https://zoom.us/..." required />
+          </div>
+          <!-- Submit -->
+          <button type="submit" class="submit-btn">Edit Session</button>
+          <a class="submit-btn" style="text-decoration: none;" onclick="deletesession()">Delete Session</a>
+        </form>
+        </div>
+      </div>
+
     </div>
 
 
@@ -277,7 +338,7 @@
               <!-- <td>"Revise daily, and stay consistent. You’re doing great!"</td> -->
               <!-- <td><button class="btn">Chat</button></td> -->
             </tr>
-            
+
           </tbody>
         </table>
       </div>
@@ -290,7 +351,7 @@
         <div class="chat-card">
           <div class="chat-title">👥 Personal Captain Chat</div>
           <div class="chat-desc">Our Private Captain group Please join to Stay Up to date.</div>
-          <a href="https://t.me/crewtorofficial" target="_blank" class="chat-btn" >Join</a>
+          <a href="https://t.me/crewtorofficial" target="_blank" class="chat-btn">Join</a>
         </div>
 
         <!-- Student Community Chat Card -->
