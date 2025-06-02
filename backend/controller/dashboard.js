@@ -3,6 +3,7 @@ import captain from '../models/captain.js';
 import bcrypt from 'bcryptjs';
 import User from '../models/user.js'
 
+
 export const capdash = async (req, res) => {
   const user = req.user
 
@@ -153,6 +154,43 @@ export const fetchCaptain = async (req,res) =>{
       const data = await captain.findById(id).populate('crewmate');
       res.status(200).json({data})
     } catch (err) {
+    console.log(err)
+    res.status(500).json({ message: 'Server error', error: err.message });
+  }
+};
+
+
+
+
+export const editSession = async (req,res) =>{
+    const user = req.user;
+    const {editdata} = req.body
+    
+    try{
+        await captain.findByIdAndUpdate(user.id,{$set :{
+          session:{
+            title: editdata.title,
+            date: editdata.date,
+            time:editdata.time,
+            link:editdata.zoom
+          }
+        }})
+        
+        res.status(200).json({message: 'Session Edied SuccessFully'})
+    }catch (err) {
+    console.log(err)
+    res.status(500).json({ message: 'Server error', error: err.message });
+  }
+};
+
+
+export const deleteSession = async (req,res) =>{
+  const user = req.user ;
+
+  try {
+    await captain.findByIdAndUpdate(user.id,{ $unset: { session: "" } });
+    res.status(200).json({message: "Session Deleted"});
+  }catch (err) {
     console.log(err)
     res.status(500).json({ message: 'Server error', error: err.message });
   }

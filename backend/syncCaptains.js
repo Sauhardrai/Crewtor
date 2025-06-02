@@ -50,8 +50,10 @@ async function main() {
 
     if (newUsersCount === 0) {
         console.log('😴 No new approved captains found. Everything is up-to-date.');
+        return;
     } else {
         console.log(`🎉 ${newUsersCount} new captains added and emailed.`);
+        return;
     }
 }
 
