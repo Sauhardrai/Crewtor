@@ -183,7 +183,7 @@ if (decoded.role === 'captain') {
             } else {
                 document.getElementById('sessionTable').innerHTML = `
                 <tr>
-                    <td colspan="4" style="text-align: center; color: gray;">You don’t have any session</td>
+                    <td colspan="4" style="text-align: center; color: gray;">Sessions Start After 30 June</td>
                 </tr>`
             };
 
