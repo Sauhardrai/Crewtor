@@ -366,3 +366,10 @@ document.getElementById('editForm').addEventListener('submit', async (e) => {
     }
 })
 
+function onCr () {
+    Swal.fire({
+            icon: 'error',
+            title: '🎉 Free slots are full.',
+            text: "Your registration is complete, but you’ll be assigned a Captain manually soon.',"
+        })
+}

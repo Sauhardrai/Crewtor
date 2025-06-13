@@ -1,25 +1,26 @@
 
-window.addEventListener('DOMContentLoaded', function () {
-  if (!getItemWithExpiry('crewtorAnnouncement')) {
-    Swal.fire({
-      title: '🎉 Special Offer!',
-      text: 'First 50 students get FREE registration on Crewtor! sessions Start from 1 july',
-      icon: 'info',
-      confirmButtonText: 'Register Now',
-      showCloseButton: true,
-      backdrop: true,
-      allowOutsideClick: false,
-      allowEscapeKey: true,
-      background: '#fefefe',
-    }).then((result) => {
-      if (result.isConfirmed) {
-        window.location.href = './html/signup.html'; // 👈 your link here
-      }
-      setItemWithExpiry('crewtorAnnouncement', 'shown', 1 * 60 * 60 * 1000);
-    });
+// window.addEventListener('DOMContentLoaded', function () {
+//   if (!getItemWithExpiry('crewtorAnnouncement')) {
+//     Swal.fire({
+//       title: '🎉 Special Offer!',
+//       text: 'First 50 students get FREE registration on Crewtor! sessions Start from 1 july',
+//       icon: 'info',
+//       confirmButtonText: 'Register Now',
+//       showCloseButton: true,
+//       backdrop: true,
+//       allowOutsideClick: false,
+//       allowEscapeKey: true,
+//       background: '#fefefe',
+//     }).then((result) => {
+//       if (result.isConfirmed) {
+//         window.location.href = './html/signup.html'; // 👈 your link here
+//       }
+//       setItemWithExpiry('crewtorAnnouncement', 'shown', 1 * 60 * 60 * 1000);
+//     });
   
-  }
-});
+//   }
+// });
+
 
 
 function setItemWithExpiry(key, value, ttl) {
