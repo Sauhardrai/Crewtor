@@ -133,6 +133,14 @@ if (decoded.role === 'captain') {
 
 
 } else if (decoded.role === 'user') {
+    window.addEventListener('DOMContentLoaded', function () {
+        Swal.fire({
+                icon: 'info',
+                title: 'Free slots are full.',
+                text: ' Your registration is complete, but you’ll be assigned a Captain manually soon.'
+            })
+
+    });
     const fetchDashboard = async () => {
         const token = localStorage.getItem('token');
 
@@ -366,3 +374,10 @@ document.getElementById('editForm').addEventListener('submit', async (e) => {
     }
 })
 
+function onCr () {
+    Swal.fire({
+            icon: 'error',
+            title: '🎉 Free slots are full.',
+            text: 'you’ll be assigned a Captain manually soon.'
+        })
+}
