@@ -67,10 +67,12 @@
         <div class="menu-item" id="profile" onclick="toActive('menu-item' , 'profile','profilesec')">
           <li><i class="fa-solid fa-address-card" style="color: #63E6BE;"></i>&nbsp;<a>Update Profile!</a></li>
         </div>
-        <div class="menu-item" id="session" onclick="toActive('menu-item','session','sessionsec')">
+        <!-- toActive('menu-item','session','sessionsec') -->
+        <div class="menu-item" id="session" onclick="onCr()" >
           <li><i class="fa-solid fa-video" style="color: #63E6BE;"></i>&nbsp;<a>Upcoming Sessions</a></li>
         </div>
-        <div class="menu-item" id="crew" onclick="toActive('menu-item', 'crew', 'crewsec')">
+        <!-- toActive('menu-item', 'crew', 'crewsec') -->
+        <div class="menu-item" id="crew" onclick="onCr()">
           <li><i class="fa-solid fa-people-group" style="color: #63E6BE;"></i>&nbsp;<a>Your Crew</a></li>
         </div>
         <div class="menu-item" id="review" onclick="toActive('menu-item' , 'review','reviewsec')">
@@ -124,7 +126,7 @@
               </div>
               <div class="row">
                 <div class="col-9">
-                  <a class="btn sub_crd_btn_2 " type="button" onclick="toActive('menu-item','session','sessionsec')">Explore
+                  <a class="btn sub_crd_btn_2 " type="button" onclick="onCr()">Explore
                       Now</a>
                 </div>
                 <div class="col-3">
@@ -221,7 +223,7 @@
               </div>
               <div class="row">
                 <div class="col-12">
-                  <a  class="btn sub_crd_btn_4"  onclick="toActive('menu-item','crew','crewsec')">See Now!</button></a>
+                  <a  class="btn sub_crd_btn_4"  onclick="onCr()">See Now!</button></a>
                 </div>
               </div>
             </div>

@@ -145,7 +145,7 @@ export const signup = async (req, res) => {
   try {
     // console.log(data)
     let userFound = await User.findOne({ email: data.email });
-    const foundCaptain = await Captain.find({}).sort({ studentcount: 1 }).limit(1);
+    // const foundCaptain = await Captain.find({}).sort({ studentcount: 1 }).limit(1);
 
     if (!userFound) {
       const newUser = new User({
@@ -159,10 +159,10 @@ export const signup = async (req, res) => {
       })
       await newUser.save();
 
-      const foundUser = await User.findOne({ email: data.email })
-      foundCaptain[0].crewmate.push(foundUser._id);
-      foundCaptain[0].studentcount +=1,
-      await foundCaptain[0].save();
+      // const foundUser = await User.findOne({ email: data.email })
+      // foundCaptain[0].crewmate.push(foundUser._id);
+      // foundCaptain[0].studentcount +=1,
+      // await foundCaptain[0].save();
 
 
       const token = jwt.sign(

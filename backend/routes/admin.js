@@ -1,6 +1,7 @@
 import express from 'express'
 import User from '../models/user.js'
 import Captain from '../models/captain.js'
+import { search } from '../controller/admin.js';
 
 
 const router = express.Router()
@@ -17,5 +18,9 @@ router.get("/dashboard", async (req, res) => {
     res.status(500).json({ message: 'Server error', error: err.message });
   }
 });
+
+
+router.post('/search', search);
+
 
 export default router;
