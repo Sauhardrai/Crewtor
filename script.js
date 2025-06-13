@@ -18,8 +18,7 @@
 //       setItemWithExpiry('crewtorAnnouncement', 'shown', 1 * 60 * 60 * 1000);
 //     });
   
-//   }
-// });
+
 
 
 function setItemWithExpiry(key, value, ttl) {
