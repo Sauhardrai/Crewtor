@@ -138,13 +138,17 @@ if (decoded.role === 'captain') {
 
 
 } else if (decoded.role === 'user') {
-    const res = await fetch('https://crewtor-backend.onrender.com/api/dash/crew', {
+
+    const fetchDashboard = async () => {
+        const token = localStorage.getItem('token');
+
+        const res = await fetch('https://crewtor-backend.onrender.com/api/dash/crew', {
             headers: { Authorization: `Bearer ${token}` },
         });
 
         const { data } = await res.json();
 
-    if (!data.isCaptain) {
+        if (!data.isCaptain) {
         Swal.fire({
             icon: 'info',
             title: 'Registration Successful!',
@@ -153,28 +157,19 @@ if (decoded.role === 'captain') {
                 We will assign a Captain to you shortly and notify you.<br>
                 Thank you for joining <b>Crewtor</b>! 🚀
             `,
-                    });
-        
-                    document.getElementById('name').innerText = data.name;
+                    })
+        }
+        if (res.ok) {
+
+            document.getElementById('name').innerText = data.name;
             const form = document.getElementById('profileForm')
             form.elements['name'].value = data.name
             form.elements['email'].value = data.email
+            fetchCaptain(data.captain)
 
-        }else{
-            const fetchDashboard = async () => {
-            const token = localStorage.getItem('token');
-            
-            if (res.ok) {
-                document.getElementById('name').innerText = data.name;
-                const form = document.getElementById('profileForm')
-                form.elements['name'].value = data.name
-                form.elements['email'].value = data.email
-                fetchCaptain(data.captain)
-            } 
+        } 
     };
     fetchDashboard();
-        }
-    
     
 
     const fetchCaptain = async (captain) => {
