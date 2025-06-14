@@ -165,7 +165,9 @@ if (decoded.role === 'captain') {
             const form = document.getElementById('profileForm')
             form.elements['name'].value = data.name
             form.elements['email'].value = data.email
-            fetchCaptain(data.captain)
+            if (data.isCaptain){
+                fetchCaptain(data.captain)
+            }
 
         } 
     };
