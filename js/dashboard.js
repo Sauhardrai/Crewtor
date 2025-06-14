@@ -1,4 +1,9 @@
 const token = localStorage.getItem('token')
+if (!token) {
+    alert('you need to login again ')
+    window.location.href= '../html/login.html'
+};
+
 const decoded = jwt_decode(token)
 if (decoded.role === 'captain') {
     const fetchDashboard = async () => {
