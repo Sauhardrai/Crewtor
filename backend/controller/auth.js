@@ -154,15 +154,11 @@ export const signup = async (req, res) => {
         address: data.address,
         phone: data.mobilenumber,
         password: hashedPassword,
-        captain: foundCaptain[0]._id,
         joinAt : Date.now()
       })
       await newUser.save();
 
       const foundUser = await User.findOne({ email: data.email })
-      foundCaptain[0].crewmate.push(foundUser._id);
-      foundCaptain[0].studentcount +=1,
-      await foundCaptain[0].save();
 
 
       const token = jwt.sign(

@@ -1,7 +1,7 @@
 const token = localStorage.getItem('token')
 if (!token) {
     alert('you need to login again ')
-    window.location.href= '../html/login.html'
+    window.location.href = '../html/login.html'
 };
 
 const decoded = jwt_decode(token)
@@ -138,6 +138,7 @@ if (decoded.role === 'captain') {
 
 
 } else if (decoded.role === 'user') {
+
     const fetchDashboard = async () => {
         const token = localStorage.getItem('token');
 
@@ -146,6 +147,18 @@ if (decoded.role === 'captain') {
         });
 
         const { data } = await res.json();
+
+        if (!data.isCaptain) {
+        Swal.fire({
+            icon: 'info',
+            title: 'Registration Successful!',
+            html: `
+                🎉 All free slots are now full.<br><br>
+                We will assign a Captain to you shortly and notify you.<br>
+                Thank you for joining <b>Crewtor</b>! 🚀
+            `,
+                    })
+        }
         if (res.ok) {
 
             document.getElementById('name').innerText = data.name;
@@ -154,12 +167,10 @@ if (decoded.role === 'captain') {
             form.elements['email'].value = data.email
             fetchCaptain(data.captain)
 
-        } else {
-            alert('Please login again.');
-            window.location.href = 'login.html';
-        }
+        } 
     };
     fetchDashboard();
+    
 
     const fetchCaptain = async (captain) => {
         const res = await fetch(`https://crewtor-backend.onrender.com/api/dash/crew/captain/${captain}`, {
@@ -207,9 +218,6 @@ if (decoded.role === 'captain') {
             });
             document.getElementById('crewtable').innerHTML = crewHtml;
 
-        } else {
-            alert('Please login again.');
-            window.location.href = 'login.html';
         }
 
     }
@@ -345,7 +353,7 @@ document.getElementById('editForm').addEventListener('submit', async (e) => {
     const formData = new FormData(e.target);
     const editdata = {}
     formData.forEach((v, k) => editdata[k] = v);
-    
+
     const res = await fetch('https://crewtor-backend.onrender.com/api/dash/cap/session/edit', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },

@@ -36,12 +36,16 @@ export const deleteUser = async (req,res) => {
   try{
     const {email} = req.body;
     const user = await User.find({email});
-    const cap = await Captain.findById(user[0].captain);
+    if(user[0].isCaptain){
+      const cap = await Captain.findById(user[0].captain);
     cap.studentcount-=1;
     cap.crewmate.pull(user[0]._id);
     await cap.save();
     await User.findByIdAndDelete(user[0]._id);
     res.status(200).json({message: 'Done'})
+    }else{
+      await User.findByIdAndDelete(user[0]._id)
+    }
   
   } catch (err) {
     console.log(err)

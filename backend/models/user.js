@@ -30,6 +30,11 @@ const userSchema = new mongoose.Schema({
     },
 
     joinAt:Date,
+
+    isCaptain:{
+        type: Boolean,
+        default : false
+    },
     
     captain:{
         type: Schema.Types.ObjectId,
