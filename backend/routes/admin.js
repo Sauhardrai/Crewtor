@@ -1,7 +1,7 @@
 import express from 'express'
 import User from '../models/user.js'
 import Captain from '../models/captain.js'
-import { search } from '../controller/admin.js';
+import { userUpdate , deleteUser } from '../controller/admin.js';
 
 
 const router = express.Router()
@@ -20,7 +20,8 @@ router.get("/dashboard", async (req, res) => {
 });
 
 
-router.post('/search', search);
+router.post('/userUpdate', userUpdate);
+router.delete('/delete', deleteUser)
 
 
 export default router;
