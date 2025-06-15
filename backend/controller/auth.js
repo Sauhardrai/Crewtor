@@ -145,7 +145,7 @@ export const signup = async (req, res) => {
   try {
     // console.log(data)
     let userFound = await User.findOne({ email: data.email });
-    const foundCaptain = await Captain.find({}).sort({ studentcount: 1 }).limit(1);
+    
 
     if (!userFound) {
       const newUser = new User({

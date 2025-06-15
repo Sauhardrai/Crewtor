@@ -1,8 +1,8 @@
-import express from 'express'
-import User from '../models/user.js'
-import Captain from '../models/captain.js'
-import { userUpdate , deleteUser } from '../controller/admin.js';
-
+import express from 'express';
+import User from '../models/user.js';
+import Captain from '../models/captain.js';
+import { userUpdate , deleteUser, assignCap, removeCap } from '../controller/admin.js';
+import {verifyToken} from '../middleware/auth.js';
 
 const router = express.Router()
 
@@ -20,8 +20,9 @@ router.get("/dashboard", async (req, res) => {
 });
 
 
-router.post('/userUpdate', userUpdate);
-router.delete('/delete', deleteUser)
-
+router.post('/userUpdate',verifyToken, userUpdate);
+router.delete('/delete',verifyToken, deleteUser);
+router.post('/assignCap',verifyToken , assignCap);
+router.get('/removeCap/:id',verifyToken,removeCap);
 
 export default router;

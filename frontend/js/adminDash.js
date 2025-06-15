@@ -9,8 +9,8 @@ async function fetchDash() {
     });
 
     const { userCount, captainCount, captain, user } = await res.json();
-    window.captainsArr= captain;
-    window.Users= user;
+    window.captainsArr = captain;
+    window.Users = user;
     if (res.ok) {
         document.getElementById('total_user').innerText = userCount
         document.getElementById('total_captain').innerText = captainCount
@@ -39,6 +39,26 @@ async function fetchDash() {
         document.getElementById('captaintable').innerHTML = captainhtml
         document.getElementById('usertable').innerHTML = crewHtml
     }
+
+    tableBody = '';
+    const usertable = document.getElementById('uwC');
+
+    user.forEach((us) => {
+        if (!us.isCaptain) {
+            tableBody += `
+        <tr>
+        <td>${us.name}</td>
+        <td>${us.email}</td>
+        <td>${us.isPaid ? '✅ Active' : 'Pending'}</td>
+        <td><select id='selCap'><option value="" disabled selected>Please choose a captain</option>
+        ${captainsArr.map(c =>
+        `<option value="${c._id}" ${us.captain?._id === c._id ? 'selected' : ''}>${c.name}</option>`
+    ).join('')}</select></td>
+        <td><button onClick="assignCaptain('${us._id}')" class="">Save</button><td></tr>`
+        }
+    })
+
+    usertable.innerHTML = tableBody;
 };
 fetchDash();
 
@@ -78,66 +98,69 @@ async function searchUser() {
     const email = document.getElementById('useremail').value;
     const resultDiv = document.getElementById('user_details');
     resultDiv.innerHTML = ''; // clear previous
-    
-   try{ Users.forEach((u)=>{
-        if (u.email == email){
-            user= u;
+
+    try {
+        Users.forEach((u) => {
+            if (u.email == email) {
+                us = u;
+                return;
+            }
+
+        })
+
+        if (!us) {
+            resultDiv.innerHTML = `<p style="color:red;">User not found</p>`;
             return;
         }
 
-    })
+
+
+        resultDiv.innerHTML = `
+  <table class="user-table" border="1" cellpadding="8" cellspacing="0">
+    <tr><td><strong>Name</strong></td><td>${us.name}</td></tr>
+    <tr><td><strong>Email</strong></td><td>${us.email}</td></tr>
+    <tr><td><strong>Phone</strong></td><td>${us.phone || 'N/A'}</td></tr>
     
-    if (!user) {
+    <tr><td><strong>Captain</strong></td><td>${us.captain?.name || 'Not assigned'}</td></tr>
+    <tr><td><strong>Registered At</strong></td><td>${new Date(us.joinAt).toLocaleString()}</td></tr>
+    <tr><td><strong>Subscription</strong></td><td>${us.isPaid ? '✅ Active' : '❌ Free User'}</td></tr>
+    <tr><td><strong>Status</strong></td><td>${us.statusMessage || '—'}</td></tr>
+  </table>
+  <div><button class="btn mt-3" type="button" onClick='deleteUser()' >Delete User</button>
+  <button class="btn mt-3" type="button" onClick="openForm()">Change Captain</button>
+  <button class="btn mt-3" type="button" onClick="removeCap('${us._id}')">Remove Captain</button></div>
+
+`;
+    } catch (err) {
+        console.log(err)
         resultDiv.innerHTML = `<p style="color:red;">User not found</p>`;
         return;
     }
-
-    
-    
-   resultDiv.innerHTML = `
-  <table class="user-table" border="1" cellpadding="8" cellspacing="0">
-    <tr><td><strong>Name</strong></td><td>${user.name}</td></tr>
-    <tr><td><strong>Email</strong></td><td>${user.email}</td></tr>
-    <tr><td><strong>Phone</strong></td><td>${user.phone || 'N/A'}</td></tr>
-    
-    <tr><td><strong>Captain</strong></td><td>${user.captain?.name || 'Not assigned'}</td></tr>
-    <tr><td><strong>Registered At</strong></td><td>${new Date(user.joinAt).toLocaleString()}</td></tr>
-    <tr><td><strong>Subscription</strong></td><td>${user.isPaid ? '✅ Active' : '❌ Free User'}</td></tr>
-    <tr><td><strong>Status</strong></td><td>${user.statusMessage || '—'}</td></tr>
-  </table>
-  <div><button class="btn mt-3" type="button" onClick='deleteUser()' >Delete User</button>
-  <button class="btn mt-3" type="button" onClick="openForm()">Change Captain</button></div>
-
-`;}catch(err){
-    console.log(err)
-    resultDiv.innerHTML = `<p style="color:red;">User not found</p>`;
-        return;
-}
 }
 
 
 async function openForm() {
 
-  document.getElementById('updateModal').style.display = 'flex';
-  const captainSelect = document.getElementById('edit_captain');
-  captainSelect.innerHTML = captainsArr.map(c =>
-    `<option value="${c._id}" ${user.captain?._id === c._id ? 'selected' : ''}>${c.name}</option>`
-  ).join('');
+    document.getElementById('updateModal').style.display = 'flex';
+    const captainSelect = document.getElementById('edit_captain');
+    captainSelect.innerHTML = captainsArr.map(c =>
+        `<option value="${c._id}" ${us.captain?._id === c._id ? 'selected' : ''}>${c.name}</option>`
+    ).join('');
 
 
-  document.getElementById('updateModal').addEventListener('submit', async (e)=>{
-    e.preventDefault();
-    const captain_id = captainSelect.value;
-    const user_email = user.email;
-   
-    const res = await fetch('https://crewtor-backend.onrender.com/api/admin/userUpdate', {
-        method: "POST",
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({captain_id , user_email})
-    });
+    document.getElementById('updateModal').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const captain_id = captainSelect.value;
+        const user_email = us.email;
 
-    const data = await res.json();
-    if (res.ok) {
+        const res = await fetch('https://crewtor-backend.onrender.com/api/admin/userUpdate', {
+            method: "POST",
+            headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+            body: JSON.stringify({ captain_id, user_email })
+        });
+
+        const data = await res.json();
+        if (res.ok) {
             Swal.fire({
                 icon: 'success',
                 title: 'Captain  updated ',
@@ -152,34 +175,84 @@ async function openForm() {
                 text: data.message
             })
         }
-  })
+    })
 };
 
 function closeForm() {
-  document.getElementById('updateModal').style.display = 'none';
+    document.getElementById('updateModal').style.display = 'none';
 }
+
+
 async function deleteUser() {
     const email = document.getElementById('useremail').value;
     const res = await fetch('https://crewtor-backend.onrender.com/api/admin/delete', {
         method: "DELETE",
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({email})
+        headers: { 'Content-Type': 'application/json' , Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ email })
     });
 
     const data = await res.json();
     if (res.ok) {
-            Swal.fire({
-                icon: 'success',
-                title: 'User Deleted ',
-            })
-            setTimeout(() => {
+        Swal.fire({
+            icon: 'success',
+            title: 'User Deleted ',
+        })
+        setTimeout(() => {
+            window.location.reload()
+        }, 1 * 1000)
+    } else {
+        Swal.fire({
+            icon: 'error',
+            title: 'User Is not deleted',
+            text: data.message
+        })
+    }
+}
+
+async function assignCaptain(id) {
+    const capId = document.getElementById('selCap').value;
+    const res = await fetch('https://crewtor-backend.onrender.com/api/admin/assignCap', {
+        method: "POST",
+        headers: { 'Content-Type': 'application/json' , Authorization: `Bearer ${token}`},
+        body: JSON.stringify({ capId, id })
+    });
+    const data = await res.json();
+    if (res.ok) {
+        Swal.fire({
+            icon: 'success',
+            title: 'Captain Assigned',
+        })
+    } else {
+        Swal.fire({
+            icon: 'error',
+            title: 'Captain is not Assigned',
+            text: data.message
+        })
+    }
+}
+
+async function removeCap(id) {
+    const res = await fetch(`https://crewtor-backend.onrender.com/api/admin/removeCap/${id}`, {
+        method: "GET",
+        headers: { 'Content-Type': 'application/json' , Authorization: `Bearer ${token}`},
+        
+    });
+    const data = await res.json();
+    if (res.ok) {
+        Swal.fire({
+            icon: 'success',
+            title: 'Captain removed',
+        })
+        setTimeout(() => {
                 window.location.reload()
             }, 1 * 1000)
-        } else {
-            Swal.fire({
-                icon: 'error',
-                title: 'User Is not deleted',
-                text: data.message
-            })
-        }
+    } else {
+        Swal.fire({
+            icon: 'error',
+            title: 'Captain is not Removed',
+            text: data.message
+        })
+    }
+    
 }
+
