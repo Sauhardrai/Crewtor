@@ -38,6 +38,23 @@ async function fetchDash() {
         });
         document.getElementById('captaintable').innerHTML = captainhtml
         document.getElementById('usertable').innerHTML = crewHtml
+            const session = captain.session;
+        if (session) {
+                document.getElementById('sessionTable').innerHTML = `
+            <tr>
+            <td>${session.title}</td>
+            <td>${session.date}</td>
+            <td>${session.time}</td>
+            <td>${captain.name}</td>
+            <td><a class="btn" href=${session.link} target="_blank">join</a></td>
+            </tr>`
+
+            } else {
+                document.getElementById('sessionTable').innerHTML = `
+                <tr>
+                    <td colspan="5" style="text-align: center; color: gray;">Sessions Start After 30 June</td>
+                </tr>`
+            };
     }
 
     tableBody = '';
