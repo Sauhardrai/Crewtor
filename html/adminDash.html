@@ -69,10 +69,10 @@
           <li><i class="fa-solid fa-address-card" style="color: #63E6BE;"></i>&nbsp;<a>Search Users</a></li>
         </div>
         <div class="menu-item" id="session" onclick="toActive('menu-item','session','sessionsec')">
-          <li><i class="fa-solid fa-video" style="color: #63E6BE;"></i>&nbsp;<a>Waiting For Captains</a></li>
+          <li><i class="fa-solid fa-people-group" style="color: #63E6BE;"></i>&nbsp;<a>Waiting For Captains</a></li>
         </div>
         <div class="menu-item" id="crew" onclick="toActive('menu-item', 'crew', 'crewsec')">
-          <li><i class="fa-solid fa-people-group" style="color: #63E6BE;"></i>&nbsp;<a>Your Crew</a></li>
+          <li><i class="fa-solid fa-video" style="color: #63E6BE;"></i>&nbsp;<a>Sessions</a></li>
         </div>
 
         <div class="menu-item" id="chat" onclick="toActive('menu-item', 'chat','chatsec')">
@@ -241,9 +241,34 @@
           </table>
         </div>
     </div>
+    </div>
 
 
     <div class="p-4 sections" id="crewsec">
+
+       <div class="session-table-container">
+        <h2>📅 Upcoming Sessions</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Topic</th>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Captain</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="sessionTable">
+            <tr>
+              <td>How to Handle Backlogs</td>
+              <td>May 28, 2025</td>
+              <td>6:00 PM</td>
+              <td>Aman</td>
+              <td><a class="btn">Edit Session</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
     <div class="p-4 sections " id="chatsec" style="min-height: 500px;">
