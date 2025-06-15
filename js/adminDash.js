@@ -239,6 +239,7 @@ async function assignCaptain(id) {
             icon: 'success',
             title: 'Captain Assigned',
         })
+        fetchDash();
     } else {
         Swal.fire({
             icon: 'error',
