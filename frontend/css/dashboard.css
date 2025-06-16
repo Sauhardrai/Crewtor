@@ -389,10 +389,28 @@ th {
 }
 
 .close-btn {
+  color: red;
   position: absolute;
-  right: 10px; top: 10px;
+  right: 25px; top: 10px;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 28px;
+}
+
+.close-btn:hover {
+  color: darkred;
+  transform: scale(1.1);
+}
+
+
+.popup{
+  font-weight: 600;
+  background: transparent;
+  margin: 10% auto;
+  padding: 20px;
+  max-width: 700px;
+  border-radius: 10px;
+  position: relative;
+  backdrop-filter: blur(5px);
 }
 
 

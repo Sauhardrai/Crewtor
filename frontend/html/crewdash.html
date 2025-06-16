@@ -65,7 +65,7 @@
           <li><i class="fa-solid fa-table-columns" style="color: #63E6BE;"></i>&nbsp;<a>Dashboard</a></li>
         </div>
         <div class="menu-item" id="profile" onclick="toActive('menu-item' , 'profile','profilesec')">
-          <li><i class="fa-solid fa-address-card" style="color: #63E6BE;"></i>&nbsp;<a>Update Profile!</a></li>
+          <li><i class="fa-solid fa-address-card" style="color: #63E6BE;"></i>&nbsp;<a>Profile!</a></li>
         </div>
         <div class="menu-item" id="session" onclick="toActive('menu-item','session','sessionsec')">
           <li><i class="fa-solid fa-video" style="color: #63E6BE;"></i>&nbsp;<a>Upcoming Sessions</a></li>
@@ -95,7 +95,8 @@
       </div>
       <div class="col-6  d-lg-flex justify-content-end">
         <a href="" class="btn sgbtn hbtn">View Plans</a>
-        <a class="btn sgbtn hbtn" onclick="logout()"><i class="fa-solid fa-right-from-bracket" style="color: #ff8707;"></i>&nbsp;Logout</a>
+        <a class="btn sgbtn hbtn" onclick="logout()"><i class="fa-solid fa-right-from-bracket"
+            style="color: #ff8707;"></i>&nbsp;Logout</a>
       </div>
 
     </div>
@@ -124,8 +125,9 @@
               </div>
               <div class="row">
                 <div class="col-9">
-                  <a class="btn sub_crd_btn_2 " type="button" onclick="toActive('menu-item','session','sessionsec')">Explore
-                      Now</a>
+                  <a class="btn sub_crd_btn_2 " type="button"
+                    onclick="toActive('menu-item','session','sessionsec')">Explore
+                    Now</a>
                 </div>
                 <div class="col-3">
                   <img class="paid_img" src="../assets/capregist/free.svg" alt="">
@@ -221,7 +223,7 @@
               </div>
               <div class="row">
                 <div class="col-12">
-                  <a  class="btn sub_crd_btn_4"  onclick="toActive('menu-item','crew','crewsec')">See Now!</button></a>
+                  <a class="btn sub_crd_btn_4" onclick="toActive('menu-item','crew','crewsec')">See Now!</button></a>
                 </div>
               </div>
             </div>
@@ -249,7 +251,8 @@
               </div>
               <div class="row">
                 <div class="col-12">
-                  <a  class="btn sub_crd_btn_5"  onclick="toActive('menu-item','review','reviewsec')">See Now!</button></a>
+                  <a class="btn sub_crd_btn_5" onclick="toActive('menu-item','review','reviewsec')">See
+                    Now!</button></a>
                 </div>
               </div>
             </div>
@@ -277,7 +280,7 @@
               </div>
               <div class="row">
                 <div class="col-12">
-                  <a class="btn sub_crd_btn_5"  onclick="toActive('menu-item','chat','chatsec')">See Now!</button></a>
+                  <a class="btn sub_crd_btn_5" onclick="toActive('menu-item','chat','chatsec')">See Now!</button></a>
                 </div>
               </div>
             </div>
@@ -287,29 +290,72 @@
     </div>
 
     <div class="p-4 sections" id="profilesec">
-      <div class="create-session-form">
-        <h2>Your Profile </h2>
-        <form method="Put" id="profileForm">
-          <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name"  required />
+      <div class="details">
+        <h5>Your Details </h5>
+        <hr>
+        <div class="row mb-4">
+          <div class="col">
+            <span class="mb-3">Name</span>
+            <h5 id="userName">Jone Dow</h5>
           </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email"  required />
+          <div class="col">
+            <span class="mb-3">Email</span>
+            <h5 id="userEmail">Example@gmail.com</h5>
           </div>
+        </div>
+        <div class="row mb-4">
+          <div class="col">
+            <span class="mb-3">Captain</span>
+            <h6 id="userCap">Not Assigned</h6>
+          </div>
+          <div class="col">
+            <span class="mb-3">Plan</span>
+            <h6 id="userPlan">Free User</h6>
+          </div>
+        </div>
+        <div class="row mb-4">
+          <div class="col">
+            <span class="mb-3">Plan Expier On</span>
+            <h6 id="userExp">3/9/2025</h6>
+          </div>
+          <div class="col">
+            <span class="mb-3">Joined on</span>
+            <h6 id="userJoin">6/6/25</h6>
+          </div>
+        </div>
+        <a class="btn" onclick="openEditForm()">Update Profile</a>
+      </div>
 
-          <div class="form-group">
-            <label for="curntpassword">Current Password</label>
-            <input type="password" id="curntpassword" name="curntpassword" placeholder="Enter Current password"  required />
+
+
+      <div id="editFormPopup" class="popup-form">
+        <div class="popup">
+        <div class="create-session-form">
+            <span class="close-btn" onclick="closeEditForm()">&times;</span>
+            <form method="Put" id="profileForm">
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required />
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required />
+              </div>
+
+              <div class="form-group">
+                <label for="curntpassword">Current Password</label>
+                <input type="password" id="curntpassword" name="curntpassword" placeholder="Enter Current password"
+                  required />
+              </div>
+              <div class="form-group">
+                <label for="newpassword">NEW Password</label>
+                <input type="password" id="newpassword" name="newpassword" placeholder="Enter New password" />
+              </div>
+              <!-- Submit -->
+              <button type="submit" class="submit-btn">Update Profile</button>
+            </form>
           </div>
-          <div class="form-group">
-            <label for="newpassword">NEW Password</label>
-            <input type="password" id="newpassword" name="newpassword" placeholder="Enter New password" />
-          </div>
-          <!-- Submit -->
-          <button type="submit" class="submit-btn">Update Profile</button>
-        </form>
+        </div>
       </div>
     </div>
 
@@ -328,8 +374,8 @@
           </thead>
           <tbody id="sessionTable">
             <tr>
-                    <td colspan="4" style="text-align: center; color: gray;">You didn't join any crew yet</td>
-                </tr>
+              <td colspan="4" style="text-align: center; color: gray;">You didn't join any crew yet</td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -357,8 +403,9 @@
           </thead>
           <tbody id="crewtable">
             <tr>
-                    <td colspan="4" style="text-align: center; color: gray;">You didn't join any crew yet <br> we assign captain soon</td>
-                </tr>    
+              <td colspan="4" style="text-align: center; color: gray;">You didn't join any crew yet <br> we assign
+                captain soon</td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -372,7 +419,8 @@
           <div class="chat-title">👥 Personal Crew Chat</div>
           <div class="chat-desc">Your private Telegram group with your Captain and crewmates. Share doubts, wins, and
             study vibes — all in one place.</div>
-          <a href="https://t.me/your-crew-link" target="_blank" class="chat-btn" id="crewlink">Join Your Crew Chat 🚀</a>
+          <a href="https://t.me/your-crew-link" target="_blank" class="chat-btn" id="crewlink">Join Your Crew Chat
+            🚀</a>
         </div>
 
         <!-- Student Community Chat Card -->
@@ -389,30 +437,30 @@
     <div class="p-4 sections" id="reviewsec">
       <div class="review-section">
         <h2> Review Your Session with Captain</h2>
-        <form id="review_form" >
-        <!-- Starability Rating -->
-        <fieldset class="starability-slot">
-          
-          <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked
-            aria-label="No rating." />
-          <input type="radio" id="first-rate1" name="rating" value="1" />
-          <label for="first-rate1" title="Terrible">1 star</label>
-          <input type="radio" id="first-rate2" name="rating" value="2" />
-          <label for="first-rate2" title="Not good">2 stars</label>
-          <input type="radio" id="first-rate3" name="rating" value="3" />
-          <label for="first-rate3" title="Average">3 stars</label>
-          <input type="radio" id="first-rate4" name="rating" value="4" />
-          <label for="first-rate4" title="Very good">4 stars</label>
-          <input type="radio" id="first-rate5" name="rating" value="5" />
-          <label for="first-rate5" title="Amazing">5 stars</label>
-        </fieldset>
+        <form id="review_form">
+          <!-- Starability Rating -->
+          <fieldset class="starability-slot">
 
-        <!-- Feedback -->
-        <label for="feedback">Write your feedback:</label>
-        <textarea id="feedback" placeholder="What went well? What could be improved?" name="feedback"></textarea>
+            <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked
+              aria-label="No rating." />
+            <input type="radio" id="first-rate1" name="rating" value="1" />
+            <label for="first-rate1" title="Terrible">1 star</label>
+            <input type="radio" id="first-rate2" name="rating" value="2" />
+            <label for="first-rate2" title="Not good">2 stars</label>
+            <input type="radio" id="first-rate3" name="rating" value="3" />
+            <label for="first-rate3" title="Average">3 stars</label>
+            <input type="radio" id="first-rate4" name="rating" value="4" />
+            <label for="first-rate4" title="Very good">4 stars</label>
+            <input type="radio" id="first-rate5" name="rating" value="5" />
+            <label for="first-rate5" title="Amazing">5 stars</label>
+          </fieldset>
 
-        <!-- Submit Button -->
-        <button class="submit-btn">Submit Review</button>
+          <!-- Feedback -->
+          <label for="feedback">Write your feedback:</label>
+          <textarea id="feedback" placeholder="What went well? What could be improved?" name="feedback"></textarea>
+
+          <!-- Submit Button -->
+          <button class="submit-btn">Submit Review</button>
         </form>
       </div>
     </div>

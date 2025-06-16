@@ -161,10 +161,21 @@ if (decoded.role === 'captain') {
         }
         if (res.ok) {
 
+            const formattedDate = new Date(data.joinAt).toLocaleDateString('en-GB', {
+                    day: '2-digit',
+                    month: 'long',
+                    year: 'numeric'
+                });
+
             document.getElementById('name').innerText = data.name;
             const form = document.getElementById('profileForm')
             form.elements['name'].value = data.name
             form.elements['email'].value = data.email
+            document.getElementById('userName').innerText= data.name;
+            document.getElementById('userEmail').innerText= data.email;
+            document.getElementById('userJoin').innerText= formattedDate;
+            document.getElementById('userPlan').innerText= data.isplan? data.plan : 'Free User';
+            document.getElementById('userExp').innerText= data.isplan? data.planexp : 'NaN';
             if (data.isCaptain){
                 fetchCaptain(data.captain)
             }
@@ -183,6 +194,7 @@ if (decoded.role === 'captain') {
 
         const { data } = await res.json();
         if (res.ok) {
+            document.getElementById('userCap').innerText= data.name;
             document.getElementById('crewlink').href = data.telegram;
             let crewHtml = ``
             document.getElementById('capName').innerText = data.name;

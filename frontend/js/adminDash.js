@@ -67,9 +67,9 @@ async function fetchDash() {
         <td>${us.name}</td>
         <td>${us.email}</td>
         <td>${us.isPaid ? '✅ Active' : 'Pending'}</td>
-        <td><select id='selCap'><option value="" disabled selected>Please choose a captain</option>
+        <td><select id='selCap-${us._id}'><option value="" disabled selected>Please choose a captain</option>
         ${captainsArr.map(c =>
-        `<option value="${c._id}" ${us.captain?._id === c._id ? 'selected' : ''}>${c.name}</option>`
+        `<option value="${c._id}">${c.name}</option>`
     ).join('')}</select></td>
         <td><button onClick="assignCaptain('${us._id}')" class="">Save</button><td></tr>`
         }
@@ -227,7 +227,7 @@ async function deleteUser() {
 }
 
 async function assignCaptain(id) {
-    const capId = document.getElementById('selCap').value;
+    const capId = document.getElementById(`selCap-${id}`).value;
     const res = await fetch('https://crewtor-backend.onrender.com/api/admin/assignCap', {
         method: "POST",
         headers: { 'Content-Type': 'application/json' , Authorization: `Bearer ${token}`},
