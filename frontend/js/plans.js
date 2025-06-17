@@ -6,7 +6,7 @@ const plans = {
             title: "🔸 Starter Plan",
             basePrice: 599,
             threeMonth: 1599,
-            sixMonth: 2499
+            sixMonth: 2799
         },
         achiever: {
             title: "🔷 Achiever Plan",
