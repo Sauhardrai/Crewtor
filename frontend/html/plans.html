@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="../assets/favicon.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crewtor Plans</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/plans.css">
+  <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+</head>
+
+<body class="font-sans">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top " data-bs-theme="dark">
+    <a href="../index.html" class="nav-link"><span class="nav-logo"><i class="fa-solid fa-house"
+          style="color: #63E6BE;"></i></span>&nbsp;Home</a>
+  </nav>
+  <section class="text-center py-10 px-4">
+    <h1 class="text-4xl font-bold mb-4 text-indigo-400">Choose Your Crewtor Plan</h1>
+    <p class="text-gray-300 mb-10 max-w-xl mx-auto">Structured mentorship for every level — from starting your journey
+      to aiming for top ranks. Select what fits you best.</p>
+
+    <div class="grid gap-8 md:grid-cols-3 max-w-6xl mx-auto ">
+      <!-- Basic Plan -->
+      <div class="bg-gray-800 rounded-2xl p-6 shadow-lg border border-yellow-500 basic"
+        onclick="openOfferPopup('starter')">
+        <h2 class="text-xl font-semibold text-yellow-300 mb-2">🔸 Starter Plan</h2>
+        <p class="text-3xl font-bold text-white mb-4">₹599<span class="text-sm text-gray-400">/month</span></p>
+        <ul class="text-gray-300 text-left space-y-2">
+          <li> &#10004; 1 Group Session per Week</li>
+          <li> &#10004; Shared crew with captains</li>
+          <li> &#10004; Template-based study plans</li>
+          <li> &#10004; Telegram community support only</li>
+
+        </ul>
+        <!-- <button class="mt-6 w-full bg-indigo-600 hover:bg-indigo-500 text-white py-2 px-4 rounded-xl transition">Get Started</button> -->
+      </div>
+
+      <!-- Pro Plan -->
+      <div class="bg-indigo-700 rounded-2xl p-6 shadow-xl transform scale-105 border-4 border-indigo-400 achiever"
+        onclick="openOfferPopup('achiever')">
+        <h2 class="text-xl font-semibold text-red-300 mb-2">🔷 Achiever Plan</h2>
+        <p class="text-3xl font-bold text-white mb-4">₹999<span class="text-sm text-gray-100"> /months</span></p>
+        <ul class="text-gray-100 text-left space-y-2">
+          <li> &#10004; 1 Group Sessions/week</li>
+          <li> &#10004; 1 One-on-One Session/week with captain</li>
+          <li> &#10004; Monthly personalized study plans</li>
+          <li> &#10004; Telegram support </li>
+
+        </ul>
+        <!-- <button class="mt-6 w-full bg-yellow-400 hover:bg-yellow-300 text-black py-2 px-4 rounded-xl transition">Choose Pro</button> -->
+      </div>
+
+      <!-- Elite Plan -->
+      <div class="bg-gray-800 rounded-2xl p-6 shadow-lg border border-pink-500 elite" onclick="openOfferPopup('elite')">
+        <h2 class="text-xl font-semibold text-pink-400 mb-2">🔴 Elite Plan</h2>
+        <p class="text-3xl font-bold text-white mb-4">₹1,299<span class="text-sm text-gray-400"> /months</span></p>
+        <ul class="text-gray-300 text-left space-y-2">
+          <li> &#10004;1 Group Session/week</li>
+          <li> &#10004;2 +1 One-on-One Sessions/week</li>
+          <li> &#10004;Weekly customized plans with check-ins</li>
+          <li> &#10004;Dedicated captain entire duration </li>
+          <li> &#10004; Telegram support </li>
+        </ul>
+        <!-- <button class="mt-6 w-full bg-pink-500 hover:bg-pink-400 text-white py-2 px-4 rounded-xl transition">Go Elite</button> -->
+      </div>
+    </div>
+
+    <!-- OFFER POPUP -->
+    <div id="offer-popup" class="hidden fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center z-50 ">
+      <div
+        class="bg-gray-900 text-white p-6 rounded-2xl shadow-2xl w-[90%] max-w-md transform scale-95 opacity-0 transition duration-300"
+        id="popup-card" style="width: 20rem;">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-xl font-bold text-indigo-300 " id="offer-title">Plan Offers</h2>
+          <button onclick="closeOfferPopup()" class="text-red-700 text-3xl  ">&times;</button>
+        </div>
+        <div class="space-y-5 text-sm mb-4">
+          <div class="bg-gray-800 p-3 rounded-xl pop " onclick="openRazorpay('1m')">
+            <p class="text-indigo-400 font-semibold" id="base-price">Base Price: ₹0 / month</p>
+          </div>
+        </div>
+        <div class="space-y-3 text-sm">
+          <div class="bg-gray-800 p-3 rounded-xl pop " onclick="openRazorpay('3m')">
+            <p class="text-indigo-400 font-semibold">3-Month Offer</p>
+            <p id="price-3" class="text-white">—</p>
+            <p id="save-3" class="text-green-400 text-xs">—</p>
+          </div>
+          <div class="bg-gray-800 p-3 rounded-xl pop " onclick="openRazorpay('6m')">
+            <p class="text-pink-400 font-semibold">6-Month Offer</p>
+            <p id="price-6" class="text-white">—</p>
+            <p id="save-6" class="text-green-400 text-xs">—</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+  <script src="../js/plans.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  
+</body>
+
+</html>

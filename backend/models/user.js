@@ -28,7 +28,6 @@ const userSchema = new mongoose.Schema({
         type: Number,
         
     },
-
     joinAt:Date,
 
     isCaptain:{
@@ -39,6 +38,19 @@ const userSchema = new mongoose.Schema({
     captain:{
         type: Schema.Types.ObjectId,
         ref: "captain"
+    },
+    isplan:{
+        type: Boolean,
+        default: false
+    },
+    plan:{
+        type: String,
+    },
+    planexp:{
+        type:Date
+    },
+    planstart:{
+        type: Date
     }
 });
 

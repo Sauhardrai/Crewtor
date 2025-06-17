@@ -161,21 +161,25 @@ if (decoded.role === 'captain') {
         }
         if (res.ok) {
 
-            const formattedDate = new Date(data.joinAt).toLocaleDateString('en-GB', {
+            function fordate(dt){
+                const formattedDate = new Date(dt).toLocaleDateString('en-GB', {
                     day: '2-digit',
                     month: 'long',
                     year: 'numeric'
                 });
-
+                return formattedDate;
+            }
+            
+            
             document.getElementById('name').innerText = data.name;
             const form = document.getElementById('profileForm')
             form.elements['name'].value = data.name
             form.elements['email'].value = data.email
             document.getElementById('userName').innerText= data.name;
             document.getElementById('userEmail').innerText= data.email;
-            document.getElementById('userJoin').innerText= formattedDate;
+            document.getElementById('userJoin').innerText= fordate(data.joinAt);
             document.getElementById('userPlan').innerText= data.isplan? data.plan : 'Free User';
-            document.getElementById('userExp').innerText= data.isplan? data.planexp : 'NaN';
+            document.getElementById('userExp').innerText= data.isplan? fordate(data.planexp) : 'NaN';
             if (data.isCaptain){
                 fetchCaptain(data.captain)
             }

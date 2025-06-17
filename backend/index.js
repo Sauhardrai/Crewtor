@@ -2,11 +2,11 @@ import dotenv from 'dotenv';
 dotenv.config();
 import express from 'express';
 import mongoose from 'mongoose';
-import authRoutes from './routes/auth.js'
-import dashRoutes from './routes/dashboard.js'
-import adminRoutes from './routes/admin.js'
-import cors from 'cors'
-
+import authRoutes from './routes/auth.js';
+import dashRoutes from './routes/dashboard.js';
+import adminRoutes from './routes/admin.js';
+import cors from 'cors';
+import paymentRoutes from './routes/payment.js'
 const app = express();
 
  const db_url = process.env.MONGO_URI
@@ -51,7 +51,7 @@ app.get('/home', (req,res)=>{
 app.use('/api/auth' , authRoutes);
 app.use('/api/dash', dashRoutes);
 app.use('/api/admin', adminRoutes);
-
+app.use('/api/payment',paymentRoutes);
 
 
 
