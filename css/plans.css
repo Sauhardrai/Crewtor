@@ -1,0 +1,57 @@
+body {
+      background-color: #0f172a ;
+      color: #f8fafc;
+    }
+
+
+
+.basic{
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+      transform-style: preserve-3d;
+
+}
+.basic:hover{
+    border: 3px solid yellow !important;
+    transform: scale(1.05) rotateX(4deg) rotateY(4deg);
+      box-shadow: 0 20px 40px rgba(222, 241, 99, 0.4);
+}
+
+.achiever{
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+      transform-style: preserve-3d;
+}
+
+.achiever:hover{
+    border: 3px solid blue !important;
+    transform: scale(1.12) rotateX(4deg) rotateY(4deg);
+      box-shadow: 0 20px 40px rgba(101, 99, 241, 0.4);
+}
+
+.elite{
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+      transform-style: preserve-3d;
+}
+
+.elite:hover{
+    border: 3px solid rgb(217, 0, 255) !important;
+    transform: scale(1.05) rotateX(4deg) rotateY(4deg);
+      box-shadow: 0 20px 40px rgba(241, 99, 217, 0.4);
+}
+
+.pop{
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+      transform-style: preserve-3d;
+}
+.pop:hover{
+    border: 1px solid rgb(234, 0, 255) !important;
+     box-shadow: 0 5px 60px rgba(204, 45, 244, 0.4);
+     transform: scale(1.05) rotateX(4deg) rotateY(4deg);
+}
