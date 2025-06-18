@@ -17,6 +17,8 @@ const razorpay = new Razorpay({
 
 router.post("/create-order", async (req, res) => {
   const { amount, currency = "INR", receipt, userId, plan, duration } = req.body;
+  const user = await User.findById(userId);
+  const go = !user.isplan || new Date(user.planexp) < Date.now();
   const options = {
     amount: amount * 100, // in paisa
     currency,
@@ -29,7 +31,7 @@ router.post("/create-order", async (req, res) => {
   };
   try {
     const order = await razorpay.orders.create(options);
-    res.json({ orderId: order.id, amount: order.amount, currency: order.currency });
+    res.json({ orderId: order.id, amount: order.amount, currency: order.currency , isOk: go});
   } catch (err) {
     console.log(err)
     res.status(500).json({ error: "Order creation failed" });
@@ -62,7 +64,7 @@ function addMonths(date, months) {
 
 
 router.post("/razorpay-webhook", async (req, res) => {
-  const secret = "yN23GHaDw4TQ@Pr"; // You set this in Razorpay dashboard
+  const secret = process.env.RZR_WEB; // You set this in Razorpay dashboard
 
   const shasum = crypto.createHmac("sha256", secret);
   shasum.update(JSON.stringify(req.body));
