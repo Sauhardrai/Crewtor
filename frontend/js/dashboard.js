@@ -176,7 +176,7 @@ if (decoded.role === 'captain') {
             form.elements['email'].value = data.email
             document.getElementById('userName').innerText= data.name;
             document.getElementById('userEmail').innerText= data.email;
-            document.getElementById('userJoin').innerText= fordate(data.planstart);
+            document.getElementById('userJoin').innerText= data.isplan? fordate(data.planstart) : 'NaN';
             document.getElementById('userPlan').innerText= data.isplan? data.plan : 'Free User';
             document.getElementById('userExp').innerText= data.isplan? fordate(data.planexp) : 'NaN';
             if (data.isCaptain){
