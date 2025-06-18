@@ -70,6 +70,9 @@
         <div class="menu-item" id="session" onclick="toActive('menu-item','session','sessionsec')">
           <li><i class="fa-solid fa-video" style="color: #63E6BE;"></i>&nbsp;<a>Create Session</a></li>
         </div>
+        <div class="menu-item" id="ONO" onclick="toActive('menu-item','ONO','One_one')">
+          <li><i class="fa-solid fa-video" style="color: #63E6BE;"></i>&nbsp;<a>Create one-one Session</a></li>
+        </div>
         <div class="menu-item" id="crew" onclick="toActive('menu-item', 'crew', 'crewsec')">
           <li><i class="fa-solid fa-people-group" style="color: #63E6BE;"></i>&nbsp;<a>Your Crew</a></li>
         </div>
@@ -366,6 +369,45 @@
 
     </div>
 
+    <div class="p-4 sections" id="One_one">
+      <div class="create-session-form">
+        <h2>📝 Create a New Session</h2>
+        <form method="POST" id="OsessionForm">
+
+          <!-- Session Title -->
+           <div class="form-group">
+            <label for="email">User Email</label>
+            <input type="url" id="Omail" name="email" placeholder="User Email for One-One" required />
+          </div>
+          <div class="form-group">
+            <label for="title">Session Title</label>
+            <input type="text" id="Otitle" name="title" placeholder="Eg: Strategy + Doubt Solving" required />
+          </div>
+
+          <!-- Date & Time -->
+          <div class="flex-row">
+            <div class="form-group">
+              <label for="date">Date</label>
+              <input type="date" id="Odate" name="date" required />
+            </div>
+
+            <div class="form-group">
+              <label for="time">Time</label>
+              <input type="time" id="Otime" name="time" required />
+            </div>
+          </div>
+
+          <!-- Zoom Link -->
+          <div class="form-group">
+            <label for="zoom">Zoom Meeting Link</label>
+            <input type="url" id="Ozoom" name="zoom" placeholder="https://zoom.us/..." required />
+          </div>
+
+          <!-- Submit -->
+          <button type="submit" class="submit-btn">Create Session</button>
+        </form>
+      </div>
+    </div>
 
 
     <footer>

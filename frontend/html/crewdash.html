@@ -70,6 +70,9 @@
         <div class="menu-item" id="session" onclick="toActive('menu-item','session','sessionsec')">
           <li><i class="fa-solid fa-video" style="color: #63E6BE;"></i>&nbsp;<a>Upcoming Sessions</a></li>
         </div>
+        <div class="menu-item" id="OnO" onclick="toActive('menu-item','OnO','oneonone')">
+          <li><i class="fa-solid fa-video" style="color: #63E6BE;"></i>&nbsp;<a>One-on-One</a></li>
+        </div>
         <div class="menu-item" id="crew" onclick="toActive('menu-item', 'crew', 'crewsec')">
           <li><i class="fa-solid fa-people-group" style="color: #63E6BE;"></i>&nbsp;<a>Your Crew</a></li>
         </div>
@@ -191,7 +194,7 @@
               </div>
               <div class="row">
                 <div class="col-9">
-                  <a class="btn sub_crd_btn ">Comming Soon</a>
+                  <a class="btn sub_crd_btn " onclick="toActive('menu-item','OnO','oneonone')">Explore Now</a>
 
                 </div>
                 <div class="col-3">
@@ -466,7 +469,27 @@
       </div>
     </div>
 
+    <div class="p-4 sections" id='oneonone'>
 
+      <div class="session-table-container">
+        <h2>📅 Upcoming One-on-One Session</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Topic</th>
+              <th>Date</th>
+              <th>Time</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="OnOT">
+            <tr>
+              <td colspan="4" style="text-align: center; color: gray;">Didn't Have any One-on-One Session</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
 
 
     <footer>
