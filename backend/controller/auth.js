@@ -165,7 +165,7 @@ export const signup = async (req, res) => {
         {
           id: foundUser._id,
           email: foundUser.email,
-          role: foundUser.role,
+          role: 'user',
         },
         process.env.JWT_SECRET,
         { expiresIn: '15d' }

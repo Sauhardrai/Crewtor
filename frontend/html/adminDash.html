@@ -76,7 +76,7 @@
         </div>
 
         <div class="menu-item" id="chat" onclick="toActive('menu-item', 'chat','chatsec')">
-          <li><i class="fa-solid fa-address-card" style="color: #63E6BE;"></i>&nbsp;<a>Contact Us!</a></li>
+          <li><i class="fa-solid fa-address-card" style="color: #63E6BE;"></i>&nbsp;<a>Paid Users!</a></li>
         </div>
 
         <div class="menu-item" onclick="logout()">
@@ -196,10 +196,10 @@
             <h3>Edit User Info</h3>
             <form id="updateUserForm">
               <div class="mb-2">
-              <label style="color: aliceblue;">Captain:</label><br>
-              <select  id="edit_captain">
-              </select>
-            </div>
+                <label style="color: aliceblue;">Captain:</label><br>
+                <select id="edit_captain">
+                </select>
+              </div>
               <button type="submit" class="btn">Update</button>
             </form>
           </div>
@@ -209,7 +209,7 @@
 
 
     <div class="p-4 sections " id='sessionsec'>
-        <div class="crew-table-container" >
+      <div class="crew-table-container">
         <div id="userWithoutCap" class="mb-5 ">
           <h3>👤 Assign Captains </h3>
           <table class="table table-striped table-dark">
@@ -240,13 +240,13 @@
             </tbody>
           </table>
         </div>
-    </div>
+      </div>
     </div>
 
 
     <div class="p-4 sections" id="crewsec">
 
-       <div class="session-table-container">
+      <div class="session-table-container">
         <h2>📅 Upcoming Sessions</h2>
         <table>
           <thead>
@@ -272,7 +272,107 @@
     </div>
 
     <div class="p-4 sections " id="chatsec" style="min-height: 500px;">
+      <div class="row">
+        <div class="plan col" onclick="toActiveSec('sector','basic')">
+          <h5>Basic Plan</h5>
+        </div>
+        <div class="plan col" onclick="toActiveSec('sector','achiever')">
+          <h5>Achiever Plan</h5>
+        </div>
+        <div class="plan col" onclick="toActiveSec('sector','elite')">
+          <h5>Elite plan</h5>
+        </div>
+      </div>
+      <hr>
+      <div class="sector active " id="basic">
+        <div class="crew-table-container">
+          <div class="mb-5">
+            <h3>👤 Basic Plan Member </h3>
+            <table class="table table-striped table-dark">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Captain</th>
+                </tr>
+              </thead>
+              <tbody id="basicUser">
+                <tr>
+                  <td>Riya Singh</td>
+                  <td>riya@gmail.com</td>
+                  <td>May 12, 2025</td>
+                  
+                </tr>
+                <tr>
+                  <td>Aditya Kumar</td>
+                  <td>aditya@gmail.com</td>
+                  <td>May 20, 2025</td>
+                 
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="sector" id="achiever">
+        <div class="crew-table-container">
+          <div class="mb-5 ">
+            <h3>👤 Achiever Plan Member </h3>
+            <table class="table table-striped table-dark">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Captain</th>
 
+                </tr>
+              </thead>
+              <tbody id="achieverUser">
+                <tr>
+                  <td>Riya Singh</td>
+                  <td>riya@gmail.com</td>
+                  <td>May 12, 2025</td>
+                  
+                </tr>
+                <tr>
+                  <td>Aditya Kumar</td>
+                  <td>aditya@gmail.com</td>
+                  <td>May 20, 2025</td>
+                  
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="sector" id="elite">
+        <div class="crew-table-container">
+          <div class="mb-5 ">
+            <h3>👤 Elite Plan Member </h3>
+            <table class="table table-striped table-dark">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Captain</th>
+                </tr>
+              </thead>
+              <tbody id="eliteUser">
+                <tr>
+                  <td>Riya Singh</td>
+                  <td>riya@gmail.com</td>
+                  <td>May 12, 2025</td>
+                </tr>
+                <tr>
+                  <td>Aditya Kumar</td>
+                  <td>aditya@gmail.com</td>
+                  <td>May 20, 2025</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
 
     </div>
 

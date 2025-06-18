@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
-import Razorpay  from 'razorpay';
+import Razorpay from 'razorpay';
 import express from 'express';
 import crypto from 'crypto';
 import User from '../models/user.js';
@@ -9,22 +9,22 @@ const router = express.Router();
 
 
 const razorpay = new Razorpay({
-  key_id:process.env.RZR_Key_Id,
-  key_secret:process.env.RZR_Key_Secret,
+  key_id: process.env.RZR_Key_Id,
+  key_secret: process.env.RZR_Key_Secret,
 });
 
 
 
 router.post("/create-order", async (req, res) => {
-  const { amount, currency = "INR", receipt , userId, plan, duration} = req.body;
+  const { amount, currency = "INR", receipt, userId, plan, duration } = req.body;
   const options = {
     amount: amount * 100, // in paisa
     currency,
     receipt,
     notes: {
-      userId,      
-      plan,        
-      duration     
+      userId,
+      plan,
+      duration
     }
   };
   try {
@@ -61,7 +61,7 @@ function addMonths(date, months) {
 
 
 
-router.post("/razorpay-webhook",async (req, res) => {
+router.post("/razorpay-webhook", async (req, res) => {
   const secret = "yN23GHaDw4TQ@Pr"; // You set this in Razorpay dashboard
 
   const shasum = crypto.createHmac("sha256", secret);
@@ -74,16 +74,23 @@ router.post("/razorpay-webhook",async (req, res) => {
 
     if (event === "payment.captured") {
       const paymentData = payload.payment.entity;
-      const months= {basePrice:1, threeMonth:3 , sixMonth:6}
-    
+      const months = { basePrice: 1, threeMonth: 3, sixMonth: 6 }
+      const user = await User.findById(details.userId);
+
+      if (user && user.planexp && user.planexp > Date.now()) {
+        return res.status(200).json({ message: "Already updated" });
+        
+      }else{
       const details = paymentData.notes;
-      await User.findByIdAndUpdate(details.userId, {$set:{
-        isplan: true,
-        plan: `${details.plan} for ${months[details.duration]} Months`,
-        planstart: Date.now(),
-        planexp: addMonths(Date.now(),months[details.duration])
-      }})
-    }
+      await User.findByIdAndUpdate(details.userId, {
+        $set: {
+          isplan: true,
+          plan: `${details.plan} for ${months[details.duration]} Months`,
+          planstart: Date.now(),
+          planexp: addMonths(Date.now(), months[details.duration])
+        }
+      })
+    }}
 
     res.status(200).json({ status: "ok" });
   } else {
@@ -95,4 +102,4 @@ router.post("/razorpay-webhook",async (req, res) => {
 
 
 
-export default router ;
+export default router;
