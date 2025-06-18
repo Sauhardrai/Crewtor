@@ -65,7 +65,7 @@ async function openRazorpay(du){
   const amount = plan[duration[du]]
   const receipt = "rcpt_" + new Date().getTime();
   
-  const res = await fetch("http://localhost:8080/api/payment/create-order", {
+  const res = await fetch("https://crewtor-backend.onrender.com/api/payment/create-order", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ amount, receipt , userId:decode.id, plan:plan.title.slice(3), duration:duration[du] })
