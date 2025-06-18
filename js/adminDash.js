@@ -38,9 +38,9 @@ async function fetchDash() {
         });
         document.getElementById('captaintable').innerHTML = captainhtml
         document.getElementById('usertable').innerHTML = crewHtml
-            const session = captain.session;
+        const session = captain.session;
         if (session) {
-                document.getElementById('sessionTable').innerHTML = `
+            document.getElementById('sessionTable').innerHTML = `
             <tr>
             <td>${session.title}</td>
             <td>${session.date}</td>
@@ -49,16 +49,22 @@ async function fetchDash() {
             <td><a class="btn" href=${session.link} target="_blank">join</a></td>
             </tr>`
 
-            } else {
-                document.getElementById('sessionTable').innerHTML = `
+        } else {
+            document.getElementById('sessionTable').innerHTML = `
                 <tr>
                     <td colspan="5" style="text-align: center; color: gray;">Sessions Start After 30 June</td>
                 </tr>`
-            };
+        };
     }
-
+    let basicT = '';
+    let proT ='';
+    let eliteT ='';
     tableBody = '';
     const usertable = document.getElementById('uwC');
+    const basic = document.getElementById('basicUser');
+    const pro = document.getElementById('achieverUser');
+    const elite = document.getElementById('eliteUser');
+    
 
     user.forEach((us) => {
         if (!us.isCaptain) {
@@ -66,16 +72,45 @@ async function fetchDash() {
         <tr>
         <td>${us.name}</td>
         <td>${us.email}</td>
-        <td>${us.isPaid ? '✅ Active' : 'Pending'}</td>
+        <td>${us.isplan ? `✅${us.plan.split(" ")[0]}` : 'Pending'}</td>
         <td><select id='selCap-${us._id}'><option value="" disabled selected>Please choose a captain</option>
         ${captainsArr.map(c =>
-        `<option value="${c._id}">${c.name}</option>`
-    ).join('')}</select></td>
+                `<option value="${c._id}">${c.name}</option>`
+            ).join('')}</select></td>
         <td><button onClick="assignCaptain('${us._id}')" class="">Save</button><td></tr>`
         }
+        if (us.isplan && us.plan.split(' ')[0] === 'Starter') {
+            basicT += `
+            <tr>
+            <td>${us.name}</td>
+            <td>${us.email}</td>
+            <td>${us.isCaptain?  us.captain.name : 'Not Assigned'}</td>
+            </tr>`
+        }
+        else if (us.isplan && us.plan.split(' ')[0] === 'Achiever'){
+            proT +=`
+            <tr>
+            <td>${us.name}</td>
+            <td>${us.email}</td>
+            <td>${us.isCaptain?  us.captain.name : 'Not Assigned'}</td>
+            </tr>`
+        }
+        else if (us.isplan && us.plan.split(' ')[0] === 'Elite'){
+            eliteT +=`
+            <tr>
+            <td>${us.name}</td>
+            <td>${us.email}</td>
+            <td>${us.isCaptain?  us.captain.name : 'Not Assigned'}</td>
+            </tr>`
+        }
     })
-
+    basic.innerHTML = basicT;
+    pro.innerHTML = proT;
+    elite.innerHTML = eliteT;
     usertable.innerHTML = tableBody;
+
+
+
 };
 fetchDash();
 
@@ -140,7 +175,7 @@ async function searchUser() {
     
     <tr><td><strong>Captain</strong></td><td>${us.captain?.name || 'Not assigned'}</td></tr>
     <tr><td><strong>Registered At</strong></td><td>${new Date(us.joinAt).toLocaleString()}</td></tr>
-    <tr><td><strong>Subscription</strong></td><td>${us.isPaid ? '✅ Active' : '❌ Free User'}</td></tr>
+    <tr><td><strong>Subscription</strong></td><td>${us.isplan ? `✅ Active ${us.plan}` : '❌ Free User'}</td></tr>
     <tr><td><strong>Status</strong></td><td>${us.statusMessage || '—'}</td></tr>
   </table>
   <div><button class="btn mt-3" type="button" onClick='deleteUser()' >Delete User</button>
@@ -204,7 +239,7 @@ async function deleteUser() {
     const email = document.getElementById('useremail').value;
     const res = await fetch('https://crewtor-backend.onrender.com/api/admin/delete', {
         method: "DELETE",
-        headers: { 'Content-Type': 'application/json' , Authorization: `Bearer ${token}` },
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
         body: JSON.stringify({ email })
     });
 
@@ -230,7 +265,7 @@ async function assignCaptain(id) {
     const capId = document.getElementById(`selCap-${id}`).value;
     const res = await fetch('https://crewtor-backend.onrender.com/api/admin/assignCap', {
         method: "POST",
-        headers: { 'Content-Type': 'application/json' , Authorization: `Bearer ${token}`},
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
         body: JSON.stringify({ capId, id })
     });
     const data = await res.json();
@@ -252,8 +287,8 @@ async function assignCaptain(id) {
 async function removeCap(id) {
     const res = await fetch(`https://crewtor-backend.onrender.com/api/admin/removeCap/${id}`, {
         method: "GET",
-        headers: { 'Content-Type': 'application/json' , Authorization: `Bearer ${token}`},
-        
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+
     });
     const data = await res.json();
     if (res.ok) {
@@ -262,8 +297,8 @@ async function removeCap(id) {
             title: 'Captain removed',
         })
         setTimeout(() => {
-                window.location.reload()
-            }, 1 * 1000)
+            window.location.reload()
+        }, 1 * 1000)
     } else {
         Swal.fire({
             icon: 'error',
@@ -271,6 +306,6 @@ async function removeCap(id) {
             text: data.message
         })
     }
-    
+
 }
 

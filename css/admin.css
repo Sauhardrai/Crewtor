@@ -64,5 +64,18 @@ table {
     cursor: pointer;
 }
 
+.sector {
+    
+    display: none;
+}
+
+.plan{
+    cursor: pointer;
+    color: #d58607;
+}
+.plan:hover{
+    transition: transform 0.3s ease;
+  transform: scale(1.05);
+}
 
 @media(max-width: 576px) {}

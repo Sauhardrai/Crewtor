@@ -148,14 +148,13 @@ if (decoded.role === 'captain') {
 
         const { data } = await res.json();
 
-        if (!data.isCaptain) {
+        if (!data.isplan || new Date(data.planexp) < new Date()) {
         Swal.fire({
             icon: 'info',
             title: 'Registration Successful!',
             html: `
-                🎉 All free slots are now full.<br><br>
-                We will assign a Captain to you shortly and notify you.<br>
-                Thank you for joining <b>Crewtor</b>! 🚀
+                🎉 All free slots are now full.<br>
+                Your plan has expired or not purchased. Please buy a plan then we will assign you a Captain.
             `,
                     })
         }
@@ -177,7 +176,7 @@ if (decoded.role === 'captain') {
             form.elements['email'].value = data.email
             document.getElementById('userName').innerText= data.name;
             document.getElementById('userEmail').innerText= data.email;
-            document.getElementById('userJoin').innerText= fordate(data.joinAt);
+            document.getElementById('userJoin').innerText= fordate(data.planstart);
             document.getElementById('userPlan').innerText= data.isplan? data.plan : 'Free User';
             document.getElementById('userExp').innerText= data.isplan? fordate(data.planexp) : 'NaN';
             if (data.isCaptain){
@@ -299,6 +298,7 @@ if (decoded.role === 'captain') {
 
 
 function toActive(secName, id, id2 = none) {
+    if ((id==='profile')||checkPlanBeforeAccess()){
     let menu = document.querySelectorAll(`.${secName}`);
     menu.forEach(element => {
         if (element.classList.contains('menu-active')) {
@@ -308,7 +308,7 @@ function toActive(secName, id, id2 = none) {
     document.querySelector(`#${id}`).classList.add('menu-active');
     toActiveSec('sections', id2)
 
-}
+}}
 
 
 function toActiveSec(section, id) {
@@ -397,3 +397,25 @@ document.getElementById('editForm').addEventListener('submit', async (e) => {
     }
 })
 
+async function checkPlanBeforeAccess() {
+
+  const res = await fetch("https://crewtor-backend.onrender.com/api/dash/crew", {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+
+  const {data}= await res.json();
+  if (!data.isplan || new Date(data.planexp) < new Date()) {
+    Swal.fire({
+      icon: 'warning',
+      title: 'Please Buy a Plan to Access Features',
+      showConfirmButton: true,
+      confirmButtonText: 'View Plans'
+    }).then(() => {
+      window.location.href = '../html/plans.html';
+    });
+  }
+    return true;
+  
+}
