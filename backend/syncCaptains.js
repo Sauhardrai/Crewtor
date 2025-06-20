@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
 
-import Captain from './models/captain.js';
+import Captain from './models/Captain.js';
 import bcrypt from 'bcryptjs'; // ES Module style
 dotenv.config();
 

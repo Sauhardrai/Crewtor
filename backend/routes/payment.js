@@ -88,8 +88,8 @@ router.post("/razorpay-webhook", async (req, res) => {
         $set: {
           isplan: true,
           plan: `${details.plan} for ${months[details.duration]} Months`,
-          planstart: Date.now(),
-          planexp: addMonths(Date.now(), months[details.duration])
+          planstart: new Date('2025-07-01'),
+          planexp: addMonths(new Date('2025-07-01'), months[details.duration])
         }
       })
     }}
