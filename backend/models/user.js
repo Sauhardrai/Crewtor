@@ -46,6 +46,13 @@ const userSchema = new mongoose.Schema({
     },
     planstart:{
         type: Date
+    },
+    oneOne:{
+        type:{
+            date:String,
+            time: String,
+            link: String
+        }
     }
 });
 

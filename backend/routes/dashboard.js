@@ -1,6 +1,6 @@
 import express from 'express';
 import { checkplan, verifyToken } from '../middleware/auth.js';
-import { capdash, sessionCreate, profileUpdate ,crewDash , crewProfileUpdate, fetchCaptain, editSession, deleteSession } from '../controller/dashboard.js';
+import { capdash, sessionCreate, profileUpdate ,crewDash , crewProfileUpdate, fetchCaptain, editSession, deleteSession, oneOne } from '../controller/dashboard.js';
 
 const router = express.Router()
 
@@ -12,6 +12,8 @@ router.put('/cap/session',verifyToken,sessionCreate);
 router.put('/cap/session/edit',verifyToken, editSession);
 
 router.delete('/cap/session/delete',verifyToken,deleteSession)
+
+router.post('/cap/session/One',verifyToken,oneOne);
 
 router.put('/cap/profile' , verifyToken ,profileUpdate);
 

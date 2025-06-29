@@ -195,3 +195,23 @@ export const deleteSession = async (req,res) =>{
     res.status(500).json({ message: 'Server error', error: err.message });
   }
 };
+
+
+
+export const oneOne = async ( req,res)=>{
+  const { data} = req.body;
+  try{
+      const user = await User.find({email:data.email});
+      await User.findByIdAndUpdate(user[0]._id, {$set:{
+        oneOne:{
+            link: data.zoom,
+            date:data.date,
+            time:data.time,
+        }}
+      })
+      res.status(200).json({message:'Created'})
+  }catch (err) {
+    console.log(err)
+    res.status(500).json({ message: 'Server error', error: err.message });
+  }
+};
