@@ -5,6 +5,7 @@ if (!token) {
 };
 
 const decoded = jwt_decode(token)
+
 if (decoded.role === 'captain') {
     const fetchDashboard = async () => {
         let crewHtml = ``
