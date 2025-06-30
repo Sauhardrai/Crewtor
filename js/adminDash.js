@@ -12,8 +12,9 @@ async function fetchDash() {
     window.captainsArr = captain;
     window.Users = user;
     if (res.ok) {
-        document.getElementById('total_user').innerText = userCount
-        document.getElementById('total_captain').innerText = captainCount
+        document.getElementById('total_user').innerText = userCount;
+        document.getElementById('total_captain').innerText = captainCount;
+        let sesshtml =''
         captain.forEach(ele => {
             captainhtml += `
             <tr>
@@ -21,6 +22,20 @@ async function fetchDash() {
             <td>${ele.email}</td>
             <td>${ele.crewmate.length}</td>
             </tr>`
+            const session = ele.session;
+        
+                if (session) {
+                    console.log(session)
+                    sesshtml += `
+                    <tr>
+                    <td>${session.title}</td>
+                    <td>${session.date}</td>
+                    <td>${session.time}</td>
+                    <td>${ele.name}</td>
+                    <td><a class="btn" href=${session.link} target="_blank">join</a></td>
+                    </tr>`
+
+                }
         });
         user.forEach(ele => {
             const formattedDate = new Date(ele.joinAt).toLocaleDateString('en-GB', {
@@ -36,25 +51,9 @@ async function fetchDash() {
             <td>${ele.captain?.name || 'Not assigned'}</td>
             </tr>`
         });
-        document.getElementById('captaintable').innerHTML = captainhtml
-        document.getElementById('usertable').innerHTML = crewHtml
-        const session = captain.session;
-        if (session) {
-            document.getElementById('sessionTable').innerHTML = `
-            <tr>
-            <td>${session.title}</td>
-            <td>${session.date}</td>
-            <td>${session.time}</td>
-            <td>${captain.name}</td>
-            <td><a class="btn" href=${session.link} target="_blank">join</a></td>
-            </tr>`
-
-        } else {
-            document.getElementById('sessionTable').innerHTML = `
-                <tr>
-                    <td colspan="5" style="text-align: center; color: gray;">Sessions Start After 30 June</td>
-                </tr>`
-        };
+        document.getElementById('captaintable').innerHTML = captainhtml;
+        document.getElementById('usertable').innerHTML = crewHtml;
+        document.getElementById('sessionTable').innerHTML= sesshtml;
     }
     let basicT = '';
     let proT ='';
