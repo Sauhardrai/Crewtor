@@ -448,7 +448,9 @@ document.getElementById('editForm').addEventListener('submit', async (e) => {
 })
 
 async function checkPlanBeforeAccess() {
-
+    if (decoded.role === 'captain'){
+        return true
+    }else{
     const res = await fetch("https://crewtor-backend.onrender.com/api/dash/crew", {
         headers: {
             Authorization: `Bearer ${token}`
@@ -468,4 +470,4 @@ async function checkPlanBeforeAccess() {
     }
     return true;
 
-}
+}};
