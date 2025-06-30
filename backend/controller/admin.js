@@ -14,8 +14,8 @@ export const userUpdate = async (req, res) => {
     const { captain_id, user_email } = req.body;
     const user = await User.find({ email: user_email });
     const newCaptain = await Captain.findById(captain_id);
-    console.log(user.isCaptain)
-    if (user.isCaptain) {
+    console.log(user[0].isCaptain)
+    if (user[0].isCaptain) {
       const oldCaptain = await Captain.findById(user[0].captain);
       await User.findByIdAndUpdate(user[0]._id, { $set: { captain: newCaptain._id } })
       newCaptain.studentcount += 1;
