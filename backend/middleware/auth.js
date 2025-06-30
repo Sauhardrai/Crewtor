@@ -19,7 +19,7 @@ export const verifyToken = (req, res, next) => {
 
 export const checkplan = async (req, res, next) => {
   const user = await User.findById(req.user.id); // assuming user is attached via auth middleware
-
+  console.log(user.name,user._id)
   if ( new Date(user.planexp) < Date.now()||!user.isplan ) {
     user.isplan = false;
     await user.save();
