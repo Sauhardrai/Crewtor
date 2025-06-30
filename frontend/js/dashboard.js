@@ -1,10 +1,19 @@
 const token = localStorage.getItem('token')
-if (!token) {
-    alert('you need to login again ')
-    window.location.href = '../html/login.html'
-};
+if (token) {
+  window.decoded = jwt_decode(token);
+  const expiry = decoded.exp * 1000; // because `exp` is in seconds, JS time is in ms
+  const now = Date.now();
 
-const decoded = jwt_decode(token)
+  if (now >= expiry) {
+    alert("Session expired");
+    localStorage.removeItem("token");
+    // Redirect or show login popup
+    window.location.href = "/login";
+  }
+}else{
+    alert('You need to loging again');
+    window.location.href = "/login";
+}
 
 if (decoded.role === 'captain') {
     const fetchDashboard = async () => {
