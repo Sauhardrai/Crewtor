@@ -75,6 +75,7 @@ router.post("/razorpay-webhook", async (req, res) => {
     const payload = req.body.payload;
 
     if (event === "payment.captured") {
+      const details = paymentData.notes;
       const paymentData = payload.payment.entity;
       const months = { basePrice: 1, threeMonth: 3, sixMonth: 6 }
       const user = await User.findById(details.userId);
@@ -83,7 +84,6 @@ router.post("/razorpay-webhook", async (req, res) => {
         return res.status(200).json({ message: "Already updated" });
         
       }else{
-      const details = paymentData.notes;
       await User.findByIdAndUpdate(details.userId, {
         $set: {
           isplan: true,
