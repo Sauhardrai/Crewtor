@@ -83,7 +83,18 @@
 
 }
 
-
+.pass{
+  position: relative;
+}
+.show{
+  padding-inline: 0.3rem;
+  color: black;
+  position: absolute;
+  right: 15px;
+  top: 8px;
+  cursor: pointer;
+    
+}
 
 
 
