@@ -82,3 +82,17 @@ if (!token) {
         window.location.href = 'adminDash.html'
     }
 }
+
+ function showPassword() {
+    const btn= document.getElementById('inputpassword')
+    const eye= document.getElementById('eye')
+    if (btn.type === 'password'){
+        btn.type = 'text'
+        eye.classList.add('fa-eye-slash')
+        eye.classList.remove('fa-eye')
+    }else{
+        btn.type = 'password'
+        eye.classList.remove('fa-eye-slash')
+        eye.classList.add('fa-eye')
+    }
+}
