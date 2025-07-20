@@ -51,7 +51,7 @@ export const sessionCreate = async (req, res) => {
       }
     });
     existingCaptain.crewmate.forEach(async (u) => {
-     await sendEmail(u.email, u.name, existingCaptain.session.date, existingCaptain.session.link, existingCaptain.session.title, existingCaptain.session.time, existingCaptain.name)
+     await sendEmail(u.email, u.name, data.date, data.zoom, data.title, data.time, existingCaptain.name)
     });
 
     res.status(200).json({ message: 'Session Created' });
