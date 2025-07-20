@@ -97,7 +97,7 @@
 
                             <form id="signup_form" class="row g-3">
                             <div id="otp_form">
-                                <div class="row mb-4 align-items-center">
+                                <div class="row mb-4 align-items-center ">
                                     <div class="col-auto">
                                         <label for="inputemail" class="form-label">Your email</label>
                                     </div>
@@ -107,7 +107,7 @@
                                     </div>
                                 </div>
 
-                                <div class="row align-items-center">
+                                <div class="row align-items-center ">
                                     <div class="col-auto">
                                         <label for="inputotp" class="col-form-label">OTP</label>
                                     </div>
@@ -139,9 +139,11 @@
                                 name="password" placeholder="Enter Your Password" required>
                         </div>
                         <div class="mb-3">
-                            <label for="address" class="form-label">Address</label>
-                            <input type="text" class="form-control" id="address" 
-                                name="address" placeholder="Enter Your address" required>
+                            <label for="strem" class="form-label">Chosse Your Exam</label>
+                            <select name="strem" id="str" class="form-select">
+                                <option value="Jee">JEE</option>
+                                <option value="NEET">NEET</option>
+                            </select>
                         </div>
 
                                     <button type="submit" class="btn sgbtn mt-3">Create an Account</button>
@@ -155,7 +157,6 @@
 
             </div>
         </div>
-
 
 
 

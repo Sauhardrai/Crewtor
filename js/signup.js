@@ -73,7 +73,6 @@ document.getElementById('signup_form').addEventListener('submit', async (e) => {
   const formData = new FormData(e.target);
   const data = {};
   formData.forEach((v, k) => data[k] = v);
-  
   const res = await fetch('https://crewtor-backend.onrender.com/api/auth/signup', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
