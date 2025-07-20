@@ -175,7 +175,7 @@ async function searchUser() {
     <tr><td><strong>Captain</strong></td><td>${us.captain?.name || 'Not assigned'}</td></tr>
     <tr><td><strong>Registered At</strong></td><td>${new Date(us.joinAt).toLocaleString()}</td></tr>
     <tr><td><strong>Subscription</strong></td><td>${us.isplan ? `✅ Active ${us.plan}` : '❌ Free User'}</td></tr>
-    <tr><td><strong>Status</strong></td><td>${us.statusMessage || '—'}</td></tr>
+    <tr><td><strong>Strem</strong></td><td>${us.role || '—'}</td></tr>
   </table>
   <div><button class="btn mt-3" type="button" onClick='deleteUser()' >Delete User</button>
   <button class="btn mt-3" type="button" onClick="openForm()">Change Captain</button>
