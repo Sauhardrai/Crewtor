@@ -12,6 +12,7 @@ const userSchema = new mongoose.Schema({
         unique: true,
         trim: true
     },
+    role:String,
     address:{
         type:String,    
     },

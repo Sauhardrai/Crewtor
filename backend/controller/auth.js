@@ -154,7 +154,8 @@ export const signup = async (req, res) => {
         address: data.address,
         phone: data.mobilenumber,
         password: hashedPassword,
-        joinAt : Date.now()
+        joinAt : Date.now(),
+        role:data.strem
       })
       await newUser.save();
 
