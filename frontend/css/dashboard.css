@@ -3,6 +3,27 @@
   z-index: 1050;
 }
 
+.demo{
+  text-align: center;
+  
+}
+
+.demo span{
+  cursor: pointer;
+  font-weight: 900;
+  color: white;
+  background-color: rgb(170, 0, 255);
+  padding: 0.6rem;
+  border-radius: 20px;
+  transition: all;
+  transition-duration: 0.3s;
+}
+.demo span:hover {
+box-shadow: 1px 0px 19px 6px rgb(86, 1, 105);
+background-color: transparent;
+border: 2px solid violet;
+}
+
 .active {
   display: block !important;
 }
