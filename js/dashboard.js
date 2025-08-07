@@ -481,3 +481,27 @@ async function checkPlanBeforeAccess() {
     return true;
 
 }};
+
+
+
+ async function bookDemo() {
+    const data = {}
+    data['Email'] = decoded.email
+    data['Date'] = new Date(Date.now()).toLocaleDateString('en-GB', {
+            day: '2-digit',
+            month: 'long',
+            year: 'numeric'
+        });
+    await fetch('https://sheetdb.io/api/v1/sr7cz6s27wc0y?sheet=sheet4', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ data })
+    });
+
+    Swal.fire({
+        icon: 'success',
+        title: 'Demo  requested Successfull',
+
+    });
+}
+
